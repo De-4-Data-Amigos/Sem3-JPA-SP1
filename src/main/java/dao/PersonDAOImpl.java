@@ -19,69 +19,74 @@ public class PersonDAOImpl implements IPersonDAO {
             emf = _emf;
             instance = new PersonDAOImpl();
 
-            }
-   return instance;
-            }
+        }
+        return instance;
+    }
 
 
-                @Override
-                public void createPerson(Person person) {
-                 try(EntityManager em = emf.createEntityManager()){
-                     em.getTransaction().begin();
-                     em.persist(person);
-                     em.getTransaction().commit();
-                 }
-                }
+    @Override
+    public void createPerson(Person person) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.persist(person);
+            em.getTransaction().commit();
+        }
+    }
 
-                @Override
-                public Person updatePerson(Person person) {
-                    try(EntityManager em = emf.createEntityManager()){
-                        em.getTransaction().begin();
-                        em.merge(person);
-                        em.getTransaction().commit();
-                    }
-                    return person;                }
+    @Override
+    public Person updatePerson(Person person) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.merge(person);
+            em.getTransaction().commit();
+        }
+        return person;
+    }
 
-                @Override
-                public void deletePerson(Person person) {
-                    try(EntityManager em = emf.createEntityManager()){
-                        em.getTransaction().begin();
-                        em.remove(person);
-                        em.getTransaction().commit();
-                    }
-                }
+    @Override
+    public void deletePerson(Person person) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.remove(person);
+            em.getTransaction().commit();
+        }
+    }
 
-                @Override
-                public Person findById(Integer personId) {
-                    return null;
-                }
+    @Override
+    public Person findById(Integer personId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            return  em.find(Person.class, personId);
+        }
 
-                @Override
-                public Person findCityPersonById(Integer personId) {
-                    try (EntityManager em = emf.createEntityManager()) {
-                        return em.find(Person.class,personId);
+    }
 
-                    }
-                }
+    @Override
+    public List<Person> findCityPersonById(Integer personId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findCityPersonById", Person.class);
+            typedQuery.setParameter("id", personId);
+            return typedQuery.getResultList();
 
-                @Override
-                public List<Person> findPerson() {
+        }
+    }
 
-                    try (EntityManager em = emf.createEntityManager()) {
-                    TypedQuery<Person> typedQuery = em.createNamedQuery("", Person.class);
-                        return  typedQuery.getResultList();
+    @Override
+    public List<Person> findPerson() {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findPerson", Person.class);
+            return typedQuery.getResultList();
 
-                    }
+        }
 
-                }
+    }
 
-                @Override
-                public List<Person> findPersonByHobby(Hobby hobby) {
-                    try (EntityManager em = emf.createEntityManager()) {
-                        TypedQuery<Person> typedQuery = em.createNamedQuery("", Person.class);
-                       typedQuery.setParameter("id", hobby);
-                        return typedQuery.getResultList();
-                }
+    @Override
+    public List<Person> findPersonByHobby(Hobby hobby) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findPersonByHobby", Person.class);
+            typedQuery.setParameter("id", hobby);
+            return typedQuery.getResultList();
+        }
 
 
     }

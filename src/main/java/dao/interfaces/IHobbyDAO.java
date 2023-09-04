@@ -17,6 +17,8 @@ public interface IHobbyDAO {
 
     List<Hobby> findHobby();
 
+    List<Hobby> deleteHobby();
+
     List<Person> findPersonByHobby(Hobby hobby);
 
     
