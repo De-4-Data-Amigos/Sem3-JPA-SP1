@@ -19,9 +19,9 @@ public class PersonDAOImpl implements IPersonDAO {
             emf = _emf;
             instance = new PersonDAOImpl();
 
-            }
-   return instance;
-            }
+        }
+        return instance;
+    }
 
 
                 @Override
