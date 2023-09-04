@@ -25,6 +25,7 @@ public class Hobby {
     @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
+
     @Column(name = "name", nullable = false)
     private String name;
 
