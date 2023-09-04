@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 
 public class Hobby {
 
@@ -24,4 +25,11 @@ public class Hobby {
     @Column(name = "type", nullable = false)
     private String type;
 
+    @Builder
+    public Hobby(String name, String wikiLink, String category, String type) {
+        this.name = name;
+        this.wikiLink = wikiLink;
+        this.category = category;
+        this.type = type;
+    }
 }
