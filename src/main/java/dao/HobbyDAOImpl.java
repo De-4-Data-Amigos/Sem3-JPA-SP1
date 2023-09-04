@@ -36,7 +36,7 @@ public class HobbyDAOImpl implements IHobbyDAO {
                 return hobby;
             }
             @Override
-            public Hobby findById (Integer hobbyId){
+            public Hobby findById (int hobbyId){
                 return null;
             }
         }
