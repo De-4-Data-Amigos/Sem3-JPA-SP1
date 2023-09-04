@@ -10,8 +10,8 @@ public class Hobby {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    @Column(name = "hobby_id", nullable = false, unique = true)
+    private int hobbyId;
 
     @Column(name = "name", nullable = false)
     private String name;
