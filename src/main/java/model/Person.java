@@ -26,7 +26,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    private Integer id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -37,6 +37,7 @@ public class Person {
     @Column(name = "age", nullable = false)
     private int age;
 
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "phone_number", nullable = false)
@@ -55,4 +56,13 @@ public class Person {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
