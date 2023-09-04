@@ -44,7 +44,9 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private Set<Hobby> hobby;
- 
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    private PersonDetails personDetails;
+
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {
         this.firstName = firstName;
