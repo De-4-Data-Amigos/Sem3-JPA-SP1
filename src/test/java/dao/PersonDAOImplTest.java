@@ -20,6 +20,7 @@ class PersonDAOImplTest {
 
     @BeforeAll
     void setUpAll() {
+
         emf = HibernateConfig.getEntityManagerFactoryConfig("-insert-db-name-");
         dao = PersonDAOImpl.getInstance(emf); //Cast expression fikser, men..?
     }
