@@ -17,8 +17,11 @@ public class PersonDAOImpl implements IPersonDAO {
     public static IPersonDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new IPersonDAO() {
+            instance = new PersonDAOImpl();
 
+            }
+   return instance;
+            }
 
 
                 @Override
@@ -54,7 +57,7 @@ public class PersonDAOImpl implements IPersonDAO {
                 }
 
                 @Override
-                public Person findAddressPersonById(Integer personId) {
+                public Person findCityPersonById(Integer personId) {
                     try (EntityManager em = emf.createEntityManager()) {
                         return em.find(Person.class,personId);
 
@@ -67,54 +70,21 @@ public class PersonDAOImpl implements IPersonDAO {
                     try (EntityManager em = emf.createEntityManager()) {
                     TypedQuery<Person> typedQuery = em.createNamedQuery("", Person.class);
                         return  typedQuery.getResultList();
-              
+
                     }
 
                 }
 
                 @Override
                 public List<Person> findPersonByHobby(Hobby hobby) {
-                    return null;
+                    try (EntityManager em = emf.createEntityManager()) {
+                        TypedQuery<Person> typedQuery = em.createNamedQuery("", Person.class);
+                       typedQuery.setParameter("id", hobby);
+                        return typedQuery.getResultList();
                 }
-            };
-        }
-        return instance;
+
+
     }
 
 
-
-    @Override
-    public Person createPerson(Person person) {
-        return null;
-    }
-
-    @Override
-    public Person updatePerson(Person person) {
-        return null;
-    }
-
-    @Override
-    public Person deletePerson(Person person) {
-        return null;
-    }
-
-    @Override
-    public Person findById(Integer personId) {
-        return null;
-    }
-
-    @Override
-    public Person findAddressPersonById(Integer personId) {
-        return null;
-    }
-
-    @Override
-    public List<Person> findPerson() {
-        return null;
-    }
-
-    @Override
-    public List<Person> findPersonByHobby(Hobby hobby) {
-        return null;
-    }
 }
