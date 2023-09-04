@@ -11,7 +11,7 @@ public class Hobby {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hobby_id", nullable = false, unique = true)
-    private int hobbyId;
+    private Integer hobbyId;
 
     @Column(name = "name", nullable = false)
     private String name;
