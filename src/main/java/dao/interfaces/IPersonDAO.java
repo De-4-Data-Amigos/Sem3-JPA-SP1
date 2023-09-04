@@ -17,7 +17,7 @@ public interface IPersonDAO {
 
     Person findById(Integer personId);
 
-    Person findAddressPersonById(Integer personId);
+    Person findCityPersonById(Integer personId);
 
     List<Person> findPerson();
 
