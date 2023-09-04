@@ -16,7 +16,7 @@ public class Hobby {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "wiki_link", nullable = false)
+    @Column(name = "wikiLink", nullable = false)
     private String wikiLink;
 
     @Column(name = "category", nullable = false)
