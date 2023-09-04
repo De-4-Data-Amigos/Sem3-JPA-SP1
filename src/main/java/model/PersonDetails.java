@@ -9,10 +9,10 @@ import lombok.*;
 @Entity
 @Table(name = "person_details")
 
-@NamedQueries({
-        @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id")
-
-})
+//@NamedQueries({
+//        @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id")
+//
+//})
 public class PersonDetails {
 
     @Id

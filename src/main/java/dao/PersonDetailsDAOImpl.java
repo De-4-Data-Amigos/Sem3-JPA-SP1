@@ -45,6 +45,7 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
             em.merge(personDetails);
             em.getTransaction().commit();
         }
+        return personDetails;
     }
 
     @Override
