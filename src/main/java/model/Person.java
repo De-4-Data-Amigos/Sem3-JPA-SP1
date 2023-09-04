@@ -6,11 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @ToString
 @Table(name = "person")
 @Entity
+
+@NamedQueries({
+        @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+        @NamedQuery(name = "Person.findPerson", query = "SELECT p FROM Person p"),
+        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby_id = :id")
+})
 public class Person {
 
     @Id
@@ -33,7 +42,7 @@ public class Person {
     private int phoneNumber;
 
     @Builder
-    public Person(String name, String surname, int age, String email, int phoneNumber) {
+    public Person(String firstName, String surname, int age, String email, int phoneNumber) {
         this.firstName = firstName;
         this.surname = surname;
         this.age = age;
