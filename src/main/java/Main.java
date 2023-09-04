@@ -1,3 +1,4 @@
+import config.HibernateConfig;
 import jakarta.persistence.EntityManagerFactory;
 
 public class Main {
@@ -5,5 +6,6 @@ public class Main {
     public static void main(String[] args) {
         HibernateConfig.addAnnotatedClasses();
         emf = HibernateConfig.getEntityManagerFactoryConfig("hobbydb");
+
     }
 }
