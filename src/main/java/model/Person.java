@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -41,6 +42,8 @@ public class Person {
     @Column(name = "phone_number", nullable = false)
     private int phoneNumber;
 
+    @OneToMany(mappedBy = "person")
+    private Set<Hobby> hobby;
  
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {

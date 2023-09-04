@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Set;
+
 @Getter
 @NoArgsConstructor
 @ToString
@@ -37,6 +39,9 @@ public class Hobby {
 
     @Column(name = "type", nullable = false)
     private String type;
+
+    @ManyToOne
+    private Person person;
 
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
