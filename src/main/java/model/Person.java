@@ -41,6 +41,7 @@ public class Person {
     @Column(name = "phone_number", nullable = false)
     private int phoneNumber;
 
+ 
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {
         this.firstName = firstName;
