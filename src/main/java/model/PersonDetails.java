@@ -15,22 +15,22 @@ public class PersonDetails {
     private String Id;
 
 
-    @Column(name = "zipcode")
+    @Column(name = "zip",nullable = false)
     private int zipcode;
 
-    @Column(name = "city_name")
+    @Column(name = "city_name",nullable = false)
     private String cityName;
 
-    @Column(name = "region_name")
+    @Column(name = "region_name",nullable = false)
     private String regionName;
 
-    @Column(name = "commune_name")
-    private String communeName;
+    @Column(name = "municipality_name",nullable = false)
+    private String municipalityName;
 
-    public PersonDetails(int zipcode, String cityName, String regionName, String communeName) {
+    public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
         this.zipcode = zipcode;
         this.cityName = cityName;
         this.regionName = regionName;
-        this.communeName = communeName;
+        this.municipalityName = municipalityName;
     }
 }
