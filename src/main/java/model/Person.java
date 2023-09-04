@@ -41,6 +41,9 @@ public class Person {
     @Column(name = "phone_number", nullable = false)
     private int phoneNumber;
 
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    private PersonDetails personDetails;
+
  
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {
