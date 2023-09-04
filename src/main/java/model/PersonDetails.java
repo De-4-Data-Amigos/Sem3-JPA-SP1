@@ -14,7 +14,6 @@ public class PersonDetails {
     @Column(name = "id", nullable = false, unique = true)
     private String Id;
 
-
     @Column(name = "zip",nullable = false)
     private int zipcode;
 
@@ -26,6 +25,9 @@ public class PersonDetails {
 
     @Column(name = "municipality_name",nullable = false)
     private String municipalityName;
+
+    @OneToOne(mappedBy = "personDetails", cascade = CascadeType.ALL)
+    private Person person;
 
     public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
         this.zipcode = zipcode;

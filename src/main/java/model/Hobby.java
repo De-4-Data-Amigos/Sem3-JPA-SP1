@@ -1,17 +1,32 @@
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.util.Set;
+
+@Getter
+@NoArgsConstructor
+@ToString
+@Table(name = "hobby")
+@Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
+                @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
+                @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id")
+        }
+)
 public class Hobby {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    private Integer id;
+
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -24,6 +39,9 @@ public class Hobby {
 
     @Column(name = "type", nullable = false)
     private String type;
+
+    @ManyToOne
+    private Person person;
 
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
