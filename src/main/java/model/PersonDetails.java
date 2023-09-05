@@ -42,7 +42,7 @@ public class PersonDetails {
     private LocalDate modificationDate;
 
 
-    @OneToOne(mappedBy = "personDetails", cascade = CascadeType.ALL)
+    @OneToOne//, cascade = CascadeType.ALL)
     private Person person;
 
     public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
@@ -50,6 +50,12 @@ public class PersonDetails {
         this.cityName = cityName;
         this.regionName = regionName;
         this.municipalityName = municipalityName;
+    }
+
+    private void addPerson(Person person){
+        if (person != null) {
+            this.person = person;
+        }
     }
 
     @PrePersist

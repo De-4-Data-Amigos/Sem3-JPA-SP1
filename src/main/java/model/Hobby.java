@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -19,7 +20,7 @@ import java.util.Set;
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
                 // @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"), Change to something
-                @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id")
+                @NamedQuery(name = "Hobby.deleteFromId", query = "delete from Hobby h where h.id = :id")
         }
 )
 public class Hobby {
@@ -51,8 +52,8 @@ public class Hobby {
     private LocalDate modificationDate;
 
 
-    @ManyToMany(mappedBy = "hobby")
-    private Set<Person> person;
+    @ManyToMany
+    private Set<Person> persons = new HashSet<>();
 
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
@@ -60,6 +61,12 @@ public class Hobby {
         this.wikiLink = wikiLink;
         this.category = category;
         this.type = type;
+    }
+
+    public void addPerson(Person person){
+        if(person != null) {
+            persons.add(person);
+        }
     }
 
     @PrePersist

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,8 +20,8 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
         @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
-        @NamedQuery(name = "Person.findPerson", query = "SELECT p FROM Person p"),
-        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby_id = :id")
+        @NamedQuery(name = "Person.findPerson", query = "SELECT p FROM Person p")
+        //@NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobbies = :id")
 })
 public class Person {
 
@@ -51,9 +52,10 @@ public class Person {
     @Column(name = "modification_date")
     private LocalDate modificationDate;
 
-    @ManyToMany(mappedBy = "person")
-    private Set<Hobby> hobby;
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    @ManyToMany
+    private Set<Hobby> hobbies = new HashSet<>();
+    @OneToOne(mappedBy = "person")//, cascade = CascadeType.ALL)
+    @MapsId
     private PersonDetails personDetails;
 
     @Builder
@@ -75,5 +77,16 @@ public class Person {
     @PreUpdate
     private void onPreUpdate(){
         modificationDate = LocalDate.now();
+    }
+
+    public void addPersonDetails(PersonDetails personDetails){
+        if (personDetails != null) {
+            this.personDetails = personDetails;
+        }
+    }
+    public void addHobby(Hobby hobby) {
+        if(hobby != null) {
+            hobbies.add(hobby);
+        }
     }
 }
