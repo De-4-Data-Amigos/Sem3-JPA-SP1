@@ -19,9 +19,14 @@ public interface IPersonDAO {
 
     List<Person> findCityPersonById(Integer personId);
 
-    List<Person> findPerson();
+    List<Person> findAllPersons();
 
     List<Person> findPersonByHobby(Hobby hobby);
 
+    Person findPersonByPhoneNumber(String phoneNumber);
+
+    int findAllPersonsSize();
+
+    List<Person> getPersonInfoByPhoneNumber(String phoneNumber);
 
 }

@@ -16,16 +16,21 @@ import java.util.Set;
 @Entity
 
 @NamedQueries({
-        // US1
+        // US som vi selv har lavet
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
-
+       // us 1,
+        @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),
+        //
         @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
         // US 3+4
-        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby = :id")
+        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby  = :id"),
 
-        //Mangler us 2,
+       // US 8
+        @NamedQuery(name = "Person.getPersonInfoByPhoneNumber", query = "SELECT p FROM Person p LEFT JOIN FETCH p.personDetails.address LEFT JOIN FETCH p.hobby WHERE p.phoneNumber = :phoneNumber")
 
-        // Mangler US 8
+
+
+
 
 
 })
@@ -48,11 +53,12 @@ public class Person {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", unique = true, nullable = false)
     private int phoneNumber;
 
     @OneToMany(mappedBy = "person")
     private Set<Hobby> hobby;
+
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private PersonDetails personDetails;
 
