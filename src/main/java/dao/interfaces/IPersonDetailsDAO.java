@@ -6,9 +6,8 @@ import model.Person;
 import model.PersonDetails;
 
 import java.util.List;
-public interface IPersonDetailsDAO {
 
-//CRUD
+public interface IPersonDetailsDAO {
 
     void createPersonDetails(PersonDetails personDetails);
 
@@ -23,9 +22,5 @@ public interface IPersonDetailsDAO {
     List<PersonDetails> findAllUsersInACity(PersonDetails cityName);
 
     List<PersonDetails> findAllZipAndCityNames(PersonDetails personDetails);
-
-
-
-
 
 }
