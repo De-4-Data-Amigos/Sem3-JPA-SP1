@@ -71,9 +71,13 @@ public class HobbyDAOImpl implements IHobbyDAO {
         }
     }
 
-
+    //US5 pt1
     @Override
     public List<Person> findPersonByHobby(Hobby hobby) {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> typedQuery = em.createQuery("select p from Person p where p.hobby = :hobby_id", Person.class);
+            typedQuery.setParameter("hobby_id", hobby.getId());
+            return typedQuery.getResultList();
+        }
     }
 }
