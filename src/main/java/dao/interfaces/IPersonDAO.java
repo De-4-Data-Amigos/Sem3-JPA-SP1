@@ -27,4 +27,6 @@ public interface IPersonDAO {
 
     int findAllPersonsSize();
 
+    List<Person> getPersonInfoByPhoneNumber(String phoneNumber);
+
 }

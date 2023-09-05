@@ -28,6 +28,9 @@ public class PersonDetails {
     @Column(name = "zip",nullable = false)
     private int zipcode;
 
+    @Column(name = "address", nullable = false)
+    private String address;
+
     @Column(name = "city_name",nullable = false)
     private String cityName;
 
@@ -40,8 +43,9 @@ public class PersonDetails {
     @OneToOne(mappedBy = "personDetails", cascade = CascadeType.ALL)
     private Person person;
 
-    public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
+    public PersonDetails(int zipcode, String address, String cityName, String regionName, String municipalityName) {
         this.zipcode = zipcode;
+        this.address = address;
         this.cityName = cityName;
         this.regionName = regionName;
         this.municipalityName = municipalityName;
