@@ -2,6 +2,8 @@ package model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @NoArgsConstructor
 @ToString
@@ -31,6 +33,15 @@ public class PersonDetails {
     @Column(name = "municipality_name",nullable = false)
     private String municipalityName;
 
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "creation_date")
+    private LocalDate creationDate;
+
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "modification_date")
+    private LocalDate modificationDate;
+
+
     @OneToOne(mappedBy = "personDetails", cascade = CascadeType.ALL)
     private Person person;
 
@@ -39,5 +50,17 @@ public class PersonDetails {
         this.cityName = cityName;
         this.regionName = regionName;
         this.municipalityName = municipalityName;
+    }
+
+    @PrePersist
+    private void onPrePersist(){
+        LocalDate ld = LocalDate.now();
+        creationDate = ld;
+        modificationDate = ld;
+    }
+
+    @PreUpdate
+    private void onPreUpdate(){
+        modificationDate = LocalDate.now();
     }
 }

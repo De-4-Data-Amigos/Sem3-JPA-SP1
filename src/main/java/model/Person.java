@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -42,7 +43,15 @@ public class Person {
     @Column(name = "phone_number", nullable = false)
     private int phoneNumber;
 
-    @OneToMany(mappedBy = "person")
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "creation_date")
+    private LocalDate creationDate;
+
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "modification_date")
+    private LocalDate modificationDate;
+
+    @ManyToMany(mappedBy = "person")
     private Set<Hobby> hobby;
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private PersonDetails personDetails;
@@ -54,5 +63,17 @@ public class Person {
         this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    @PrePersist
+    private void onPrePersist(){
+        LocalDate ld = LocalDate.now();
+        creationDate = ld;
+        modificationDate = ld;
+    }
+
+    @PreUpdate
+    private void onPreUpdate(){
+        modificationDate = LocalDate.now();
     }
 }
