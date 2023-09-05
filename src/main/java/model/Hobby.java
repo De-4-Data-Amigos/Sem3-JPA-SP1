@@ -50,5 +50,10 @@ public class Hobby {
         this.wikiLink = wikiLink;
         this.category = category;
         this.type = type;
+
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

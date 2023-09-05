@@ -45,6 +45,7 @@ public class Person {
     @Column(name = "age", nullable = false)
     private int age;
 
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "phone_number", nullable = false)
@@ -63,4 +64,13 @@ public class Person {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
