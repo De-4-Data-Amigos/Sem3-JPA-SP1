@@ -1,9 +1,12 @@
 package dao;
 
 import config.HibernateConfig;
+import dao.interfaces.IPersonDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import model.Hobby;
 import model.Person;
+import model.PersonDetails;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,11 +19,11 @@ class PersonDAOImplTest {
 
     private static EntityManager em;
 
-    private static PersonDAOImpl dao;
+    private static IPersonDAO dao;
 
     @BeforeAll
-    void setUpAll() {
-
+    static void setUpAll() {
+        HibernateConfig.addAnnotatedClasses(Hobby.class, Person.class, PersonDetails.class);
         emf = HibernateConfig.getEntityManagerFactoryConfig("-insert-db-name-");
         dao = PersonDAOImpl.getInstance(emf); //Cast expression fikser, men..?
     }
@@ -40,13 +43,13 @@ class PersonDAOImplTest {
                 .build();
 
 
-    dao.createPerson(expectedPerson);
+        dao.createPerson(expectedPerson);
 
-    Person actualPerson = dao.findPerson(expectedPerson.getId());
+        Person actualPerson = dao.findById(expectedPerson.getId());
 
-    assertEquals(expectedPerson, actualPerson);
+        assertEquals(expectedPerson, actualPerson);
 
-}
+    }
 
     @Test
     void updatePerson() {
@@ -58,16 +61,16 @@ class PersonDAOImplTest {
                 .phoneNumber(40404040)
                 .build();
 
-    dao.createPerson(testPerson);
+        dao.createPerson(testPerson);
 
-    Person expectedPerson = dao.findPerson(testPerson.getId());
+        Person expectedPerson = dao.findById(testPerson.getId());
 
-    expectedPerson.setEmail("Dao@dao.dk");
-    expectedPerson.setFirstName("Pomfrit");
+        expectedPerson.setEmail("Dao@dao.dk");
+        expectedPerson.setFirstName("Pomfrit");
 
-    Person actualPerson = dao.updatePerson(expectedPerson);
+        Person actualPerson = dao.updatePerson(expectedPerson);
 
-    assertEquals(expectedPerson, actualPerson);
+        assertEquals(expectedPerson, actualPerson);
 
     }
 
@@ -87,7 +90,7 @@ class PersonDAOImplTest {
 
         dao.deletePerson(testPerson);
 
-        assertThrows(Exception.class, () -> dao.findPerson(id));
+        assertThrows(Exception.class, () -> dao.findById(id));
 
     }
 

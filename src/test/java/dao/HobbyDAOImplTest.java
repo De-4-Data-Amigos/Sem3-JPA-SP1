@@ -1,9 +1,12 @@
 package dao;
 
 import config.HibernateConfig;
+import dao.interfaces.IHobbyDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import model.Hobby;
+import model.Person;
+import model.PersonDetails;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,13 +19,13 @@ class HobbyDAOImplTest {
 
     private static EntityManager em;
 
-    private static HobbyDAOImpl dao;
+    private static IHobbyDAO dao;
 
     @BeforeAll
-    void setUpAll() {
-
+    static void setUpAll() {
+        HibernateConfig.addAnnotatedClasses(Hobby.class, Person.class, PersonDetails.class);
         emf = HibernateConfig.getEntityManagerFactoryConfig("-insert-db-name-");
-        dao = HobbyDAOImpl.getInstance(emf); //Cast expression fikser, men..?
+        dao = HobbyDAOImpl.getInstance(emf);
     }
 
     @AfterEach
@@ -40,7 +43,7 @@ class HobbyDAOImplTest {
 
         dao.createHobby(expectedHobby);
 
-        Hobby actualHobby = dao.findHobby(expectedHobby.getId());
+        Hobby actualHobby = dao.findById(expectedHobby.getId());
 
         assertEquals(expectedHobby, actualHobby);
     }
@@ -56,7 +59,7 @@ class HobbyDAOImplTest {
 
         dao.createHobby(testHobby);
 
-        Hobby expectedHobby = dao.findHobby(testHobby.getId());
+        Hobby expectedHobby = dao.findById(testHobby.getId());
 
         expectedHobby.setCategory("Udendørs");
 
@@ -81,7 +84,7 @@ class HobbyDAOImplTest {
 
         dao.deleteHobby(testHobby);
 
-        assertThrows(Exception.class, () -> dao.findHobby(id));
+        assertThrows(Exception.class, () -> dao.findById(id));
     }
 
     @Test
