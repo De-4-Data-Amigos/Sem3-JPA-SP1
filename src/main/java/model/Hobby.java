@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -17,6 +18,7 @@ import java.util.Set;
         {
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
+                // @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"), Change to something
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id")
         }
 )
@@ -40,8 +42,17 @@ public class Hobby {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @ManyToOne
-    private Person person;
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "creation_date")
+    private LocalDate creationDate;
+
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "modification_date")
+    private LocalDate modificationDate;
+
+
+    @ManyToMany(mappedBy = "hobby")
+    private Set<Person> person;
 
     @Enumerated(EnumType.STRING)
     @Column(name ="hobby_type", nullable = false)
@@ -69,6 +80,16 @@ public class Hobby {
     public enum HobbyCategory {
 
         GENEREL
+    }
+    @PrePersist
+    private void onPrePersist(){
+        LocalDate ld = LocalDate.now();
+        creationDate = ld;
+        modificationDate = ld;
+    }
 
+    @PreUpdate
+    private void onPreUpdate(){
+        modificationDate = LocalDate.now();
     }
 }
