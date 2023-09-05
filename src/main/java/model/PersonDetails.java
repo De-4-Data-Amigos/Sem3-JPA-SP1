@@ -17,7 +17,7 @@ public class PersonDetails {
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
-    private String Id;
+    private int Id;
 
     @Column(name = "zip",nullable = false)
     private int zipcode;
