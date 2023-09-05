@@ -55,6 +55,7 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
         }
     }
 
+
     @Override
     public List<PersonDetails> findCityPersonById(Integer personId) {
         try(EntityManager em = emf.createEntityManager()){
