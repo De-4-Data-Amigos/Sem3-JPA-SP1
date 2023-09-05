@@ -70,14 +70,21 @@ public class PersonDAOImpl implements IPersonDAO {
         }
     }
 
+
     @Override
     public List<Person> findAllPersons() {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findAllPersons", Person.class);
             return typedQuery.getResultList();
-
         }
+    }
 
+    @Override
+    public int findAllPersonsSize() {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findAllPersons", Person.class);
+            return typedQuery.getResultList().size();
+        }
     }
 
     @Override

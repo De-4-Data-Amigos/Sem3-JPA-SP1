@@ -22,7 +22,7 @@ import java.util.Set;
 
         @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
         // US 3+4
-        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby = :id")
+        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby  = :id")
 
         //Mangler us 2,
 

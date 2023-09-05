@@ -25,7 +25,6 @@ public interface IPersonDAO {
 
     Person findPersonByPhoneNumber(String phoneNumber);
 
-
-
+    int findAllPersonsSize();
 
 }
