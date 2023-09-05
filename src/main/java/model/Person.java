@@ -18,6 +18,7 @@ import java.util.Set;
 @NamedQueries({
         // US1
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+        @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),
 
         @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
         // US 3+4
@@ -47,7 +48,7 @@ public class Person {
 
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", unique = true, nullable = false)
     private int phoneNumber;
 
     @OneToMany(mappedBy = "person")

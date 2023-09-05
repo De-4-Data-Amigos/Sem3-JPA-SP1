@@ -71,9 +71,9 @@ public class PersonDAOImpl implements IPersonDAO {
     }
 
     @Override
-    public List<Person> findPerson() {
+    public List<Person> findAllPersons() {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findPerson", Person.class);
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findAllPersons", Person.class);
             return typedQuery.getResultList();
 
         }
@@ -91,5 +91,13 @@ public class PersonDAOImpl implements IPersonDAO {
 
     }
 
+    @Override
+    public Person findPersonByPhoneNumber(String phoneNumber) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findPersonByPhoneNumber", Person.class);
+            typedQuery.setParameter("phoneNumber", phoneNumber);
+            return typedQuery.getSingleResult();
+        }
+    }
 
 }
