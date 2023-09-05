@@ -43,11 +43,32 @@ public class Hobby {
     @ManyToOne
     private Person person;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name ="hobby_type", nullable = false)
+    private HobbyType hobbyType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hobby_category", nullable = false)
+    private HobbyCategory hobbyCategory;
+
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
         this.name = name;
         this.wikiLink = wikiLink;
         this.category = category;
         this.type = type;
+    }
+
+    public enum HobbyType {
+
+        INDENDØRS,
+        UDENDØRS,
+        OBSERVATION
+    }
+
+    public enum HobbyCategory {
+
+        GENEREL
+
     }
 }
