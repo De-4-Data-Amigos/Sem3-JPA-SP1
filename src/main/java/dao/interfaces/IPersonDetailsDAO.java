@@ -20,9 +20,9 @@ public interface IPersonDetailsDAO {
 
     List<PersonDetails> findCityPersonById(Integer personId);
 
-    PersonDetails findAllUsersInACity(PersonDetails personDetails);
+    List<PersonDetails> findAllUsersInACity(PersonDetails cityName);
 
-    PersonDetails findAllZipAndCityNames(PersonDetails personDetails);
+    List<PersonDetails> findAllZipAndCityNames(PersonDetails personDetails);
 
 
 

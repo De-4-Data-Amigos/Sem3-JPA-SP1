@@ -58,21 +58,30 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
 
     @Override
     public List<PersonDetails> findCityPersonById(Integer personId) {
-        try(EntityManager em = emf.createEntityManager()){
+        try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<PersonDetails> typedQuery = em.createNamedQuery("Person.findCityPersonById", PersonDetails.class);
-            typedQuery.setParameter("id",personId);
+            typedQuery.setParameter("id", personId);
             return typedQuery.getResultList();
         }
     }
 
     @Override
-    public PersonDetails findAllUsersInACity(PersonDetails personDetails) {
-        return null;
+    public List<PersonDetails> findAllUsersInACity(PersonDetails cityName) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<PersonDetails> typedQuery = em.createNamedQuery("Person.findAllUsersInACity", PersonDetails.class);
+            typedQuery.setParameter("cityName", cityName);
+            return typedQuery.getResultList();
+        }
+
     }
 
     @Override
-    public PersonDetails findAllZipAndCityNames(PersonDetails personDetails) {
-        return null;
+    public List<PersonDetails> findAllZipAndCityNames(PersonDetails personDetails) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<PersonDetails> typedQuery = em.createNamedQuery("Person.findAllUsersInACity", PersonDetails.class);
+            return typedQuery.getResultList();
+        }
+
     }
 
 
