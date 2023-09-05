@@ -13,9 +13,9 @@ import lombok.*;
         // ?
         @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
         // US 6
-        @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName")
-
-        // Mangler US 7
+        @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName"),
+        // US 7
+        @NamedQuery(name = "Person.findAllZipAndCityNames", query = "SELECT p.cityName, p.zipcode FROM PersonDetails p")
 })
 
 //

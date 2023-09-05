@@ -18,6 +18,16 @@ public interface IPersonDetailsDAO {
 
     void deletePersonDetails(PersonDetails personDetails);
 
+    PersonDetails findCityPersonById(PersonDetails personDetails);
+
+    List<PersonDetails> findCityPersonById(Integer personId);
+
+    PersonDetails findAllUsersInACity(PersonDetails personDetails);
+
+    PersonDetails findAllZipAndCityNames(PersonDetails personDetails);
+
+
+
 
 
 }
