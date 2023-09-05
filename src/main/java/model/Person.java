@@ -16,10 +16,18 @@ import java.util.Set;
 @Entity
 
 @NamedQueries({
+        // US1
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
-        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
-        @NamedQuery(name = "Person.findPerson", query = "SELECT p FROM Person p"),
-        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby_id = :id")
+
+        @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
+        // US 3+4
+        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby = :id")
+
+        //Mangler us 2,
+
+        // Mangler US 8
+
+
 })
 public class Person {
 
