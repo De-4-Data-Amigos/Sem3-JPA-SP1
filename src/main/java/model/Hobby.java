@@ -18,8 +18,10 @@ import java.util.Set;
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
                 //US 5, mangler count
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
-                @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id")
-        }
+                @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id"),
+                @NamedQuery(name = "Hobby.findCount", query = "SELECT h.name, COUNT(p) FROM Hobby h JOIN h.person p GROUP BY h.name")
+
+                        }
 )
 public class Hobby {
 
