@@ -43,11 +43,20 @@ public class PersonDetails {
     @OneToOne(mappedBy = "personDetails", cascade = CascadeType.ALL)
     private Person person;
 
+    @Builder
     public PersonDetails(int zipcode, String address, String cityName, String regionName, String municipalityName) {
         this.zipcode = zipcode;
         this.address = address;
         this.cityName = cityName;
         this.regionName = regionName;
         this.municipalityName = municipalityName;
+    }
+
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }
