@@ -9,10 +9,16 @@ import lombok.*;
 @Entity
 @Table(name = "person_details")
 
-//@NamedQueries({
-//        @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id")
+@NamedQueries({
+        // ?
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+        // US 6
+        @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName")
+
+        // Mangler US 7
+})
+
 //
-//})
 public class PersonDetails {
 
     @Id

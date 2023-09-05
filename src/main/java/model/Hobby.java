@@ -16,6 +16,7 @@ import java.util.Set;
 @NamedQueries(
         {
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
+                //US 5, mangler count
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id")
         }
