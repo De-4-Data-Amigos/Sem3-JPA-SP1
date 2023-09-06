@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -19,8 +20,10 @@ import java.util.Set;
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
                 //US 5, mangler count
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
-                // @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"), Change to something
-                @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h where h.id = :id")
+
+                @NamedQuery(name = "Hobby.findById", query = "select h from Hobby h where h.id = :id"),
+                @NamedQuery(name = "Hobby.findCountForAllHobbies", query = "SELECT h.name, COUNT(p) FROM Hobby h JOIN h.persons p GROUP BY h.name"),
+                @NamedQuery(name = "Hobby.deleteFromId", query = "delete from Hobby h where h.id = :id")
         }
 )
 public class Hobby {
@@ -51,9 +54,8 @@ public class Hobby {
     @Column(name = "modification_date")
     private LocalDate modificationDate;
 
-
-    @ManyToMany(mappedBy = "hobby")
-    private Set<Person> person;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Person> person = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name ="hobby_type", nullable = false)
@@ -76,6 +78,7 @@ public class Hobby {
         this.category = category;
     }
 
+<<<<<<< entities
     public enum HobbyType {
 
         INDENDØRS,
@@ -87,6 +90,13 @@ public class Hobby {
 
         GENEREL
     }
+
+    public void addPerson(Person person){
+        if(person != null) {
+            persons.add(person);
+        }
+    }
+
     @PrePersist
     private void onPrePersist(){
         LocalDate ld = LocalDate.now();

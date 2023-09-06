@@ -1,12 +1,14 @@
 package model;
 
 import jakarta.persistence.*;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,16 +19,21 @@ import java.util.Set;
 @Entity
 
 @NamedQueries({
-        // US1
+        // US som vi selv har lavet
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
 
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+
+       // us 1,
+        @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),
+        //
         @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
         // US 3+4
-        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby = :id")
+        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p JOIN p.hobbies h WHERE h.id = :id"),
 
-        //Mangler us 2,
-
-        // Mangler US 8
+       // US 8
+        @NamedQuery(name = "Person.getPersonInfoByPhoneNumber", query = "SELECT p FROM Person p LEFT JOIN FETCH p.personDetails pd LEFT JOIN FETCH pd.address a LEFT JOIN FETCH p.hobbies WHERE p.phoneNumber = :phoneNumber")
+  
 
 
 })
@@ -34,7 +41,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "first_name", nullable = false)
@@ -46,10 +53,14 @@ public class Person {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(name = "email", nullable = false)
+
+    @Column(name = "email", nullable = false,unique = true)
+
+   
+
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", unique = true, nullable = false)
     private int phoneNumber;
 
     @Temporal(value = TemporalType.DATE)
@@ -60,9 +71,10 @@ public class Person {
     @Column(name = "modification_date")
     private LocalDate modificationDate;
 
-    @ManyToMany(mappedBy = "person")
-    private Set<Hobby> hobby;
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    @ManyToMany
+    private Set<Hobby> hobbies = new HashSet<>();
+
+    @OneToOne(mappedBy = "person", cascade = CascadeType.PERSIST)
     private PersonDetails personDetails;
 
     @Builder
@@ -87,10 +99,23 @@ public class Person {
     }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+
+
+    public void setPersonDetails(PersonDetails personDetails) {
+        if (personDetails != null) {
+            this.personDetails = personDetails;
+            personDetails.setPerson(this);
+        }
+    }
+
+    public void addHobby(Hobby hobby) {
+        if (hobby != null) {
+            hobbies.add(hobby);
+            hobby.getPersons().add(this);
+        }
     }
   
 }
