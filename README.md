@@ -44,14 +44,17 @@ Person to PersonDetails is a * - * (BiDirectional) relation
 
 ***********************
 
-[4] Collaboration & Project control
+[4] Collaboration & Project Control
 
 We spent the first day mapping out the project, creating first a businesscase, then the domain model and lastly the EER-diagram was made.
 
 We set up the project together, ensuring we all were in on creating entity-classes, dao-classes, testing of these and the database itself.
 
-Most of our time spent on the project were at CPH Business in Lyngby, usually 9.30-14'ish, and the communicated from home over Discord in our usual group.
-In regards to control, we did not setup a Kanban board (we usually use the one on Github) for this project and mostly due to it's shorter size. 
+Most of our time spent on the project were at CPH Business in Lyngby, usually 9.30-14'ish, and then communicated from home over Discord in our usual group.
+In regards to control, we did not setup a Kanban board for this project and that was mostly due to it's shorter size, in comparison to our 2 semester exam project spanning over a month, 
+where we heavily used Githubs own project-board.
+
+
 We did however use our Discord chat group for this, usually creating a to-do for the day and one for the next day (see picture below):
 ![](C:\Users\rasmu\Downloads\DiscordStyring.png)
 
