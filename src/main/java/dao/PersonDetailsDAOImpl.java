@@ -82,7 +82,7 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
     @Override
     public List<Object[]> findAllZipAndCityNames(PersonDetails personDetails) {
         try (EntityManager em = emf.createEntityManager()) {
-            Query query = em.createNamedQuery("Person.findAllZipAndCityNames", PersonDetails.class);
+            TypedQuery<Object[]> query = em.createNamedQuery("Person.findAllZipAndCityNames", Object[].class);
            // query.setParameter("cityName", personDetails.getCityName());
             return query.getResultList();
         }

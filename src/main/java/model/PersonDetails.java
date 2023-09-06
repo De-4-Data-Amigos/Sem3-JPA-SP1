@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @ToString
-
+@EqualsAndHashCode
 @Entity
 @Table(name = "person_details")
 
@@ -15,7 +15,7 @@ import java.time.LocalDate;
         // US 6
         @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName"),
         // US 7
-        @NamedQuery(name = "Person.findAllZipAndCityNames", query = "SELECT p.cityName, p.zipcode FROM PersonDetails p")
+        @NamedQuery(name = "Person.findAllZipAndCityNames", query = "SELECT p.zipcode, p.cityName FROM PersonDetails p")
 })
 
 public class PersonDetails {

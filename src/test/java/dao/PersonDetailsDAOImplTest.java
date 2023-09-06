@@ -126,10 +126,11 @@ class PersonDetailsDAOImplTest {
 
     @Test
     void findAllUsersInACity() {
+        // Reset test how?
         PersonDetails testPersonDetails = PersonDetails.builder()
                 .zipcode(3000)
                 .address("Langevej 48")
-                .cityName("Helsingør")
+                .cityName("Ballerup")
                 .regionName("Region Hovedstaden")
                 .municipalityName("Helsingør Komunne")
                 .build();
@@ -140,14 +141,14 @@ class PersonDetailsDAOImplTest {
         PersonDetails testPersonDetails2 = PersonDetails.builder()
                 .zipcode(3000)
                 .address("Bobslædevej 62")
-                .cityName("Helsingør")
+                .cityName("Ballerup")
                 .regionName("Region Hovedstaden")
                 .municipalityName("Helsingør Komunne")
                 .build();
 
         dao.createPersonDetails(testPersonDetails2);
 
-        List<PersonDetails> actual = dao.findAllUsersInACity("Helsingør");
+        List<PersonDetails> actual = dao.findAllUsersInACity("Ballerup");
 
         assertEquals(2, actual.size());
 
@@ -169,8 +170,5 @@ class PersonDetailsDAOImplTest {
 
         assertEquals(3000,actual.get(0)[0]);
         assertEquals("Helsingør",actual.get(0)[1]);
-
-
-
     }
 }
