@@ -1,6 +1,7 @@
 package model;
 
 import jakarta.persistence.*;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -62,7 +63,6 @@ public class Person {
     @Column(name = "phone_number", unique = true, nullable = false)
     private int phoneNumber;
 
-
     @Temporal(value = TemporalType.DATE)
     @Column(name = "creation_date")
     private LocalDate creationDate;
@@ -77,7 +77,6 @@ public class Person {
     @OneToOne(mappedBy = "person", cascade = CascadeType.PERSIST)
     private PersonDetails personDetails;
 
-
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {
         this.firstName = firstName;
@@ -86,7 +85,6 @@ public class Person {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
-
 
     @PrePersist
     private void onPrePersist(){
@@ -99,6 +97,11 @@ public class Person {
     private void onPreUpdate(){
         modificationDate = LocalDate.now();
     }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+
+    }
+
 
 
     public void setPersonDetails(PersonDetails personDetails) {
@@ -122,4 +125,5 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

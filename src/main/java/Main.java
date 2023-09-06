@@ -9,6 +9,7 @@ public class Main {
     protected static EntityManagerFactory emf;
 
     public static void main(String[] args) {
+
         HibernateConfig.addAnnotatedClasses(Person.class, PersonDetails.class, Hobby.class);
         emf = HibernateConfig.getEntityManagerFactoryConfig("hobbydb");
 

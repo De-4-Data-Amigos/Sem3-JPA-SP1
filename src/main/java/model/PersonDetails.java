@@ -49,6 +49,7 @@ public class PersonDetails {
     private LocalDate modificationDate;
 
 
+
     @OneToOne( cascade = CascadeType.PERSIST)
     private Person person;
 
@@ -62,6 +63,7 @@ public class PersonDetails {
         this.regionName = regionName;
         this.municipalityName = municipalityName;
     }
+
 
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
@@ -86,6 +88,7 @@ public class PersonDetails {
     public void setPerson(Person person) {
         this.person = person;
     }
+
 }
 
 
