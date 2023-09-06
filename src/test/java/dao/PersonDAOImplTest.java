@@ -37,7 +37,7 @@ static void setUpAll() {
     void tearDown() {
             emf.close();
             }
-            
+
 
 @Test
     void createPerson() {
@@ -126,7 +126,34 @@ static void setUpAll() {
 
 @Test
     void findAllPersons() {
-            }
+    Person person1 = Person.builder()
+            .firstName("Jens")
+            .surname("Lyn")
+            .age(25)
+            .email("test1@test.dk")
+            .phoneNumber(40404040)
+            .build();
+
+    Person person2 = Person.builder()
+            .firstName("Mikkel")
+            .surname("Jensen")
+            .age(30)
+            .email("test2@test.dk")
+            .phoneNumber(50505050)
+            .build();
+
+    dao.createPerson(person1);
+    dao.createPerson(person2);
+
+    List<Person> allPersons = dao.findAllPersons();
+
+    assertNotNull(allPersons, "List of persons should not be null.");
+    assertFalse(allPersons.isEmpty(), "List of persons should not be empty.");
+    assertTrue(allPersons.contains(person1), "List should contain person1.");
+    assertTrue(allPersons.contains(person2), "List should contain person2.");
+}
+
+
 
 @Test
     void findAllPersonsSize() {
@@ -177,9 +204,9 @@ static void setUpAll() {
             .build();
 
     Person person2 = Person.builder()
-            .firstName("Mikkel")
+            .firstName("Marcus")
             .surname("Jensen")
-            .age(30)
+            .age(280)
             .email("test2@test.dk")
             .phoneNumber(50505050)
             .build();

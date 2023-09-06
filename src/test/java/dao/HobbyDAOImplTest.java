@@ -35,26 +35,26 @@ class HobbyDAOImplTest {
     }
 
     @Test
-    void createHobby(){
+    void createHobby() {
 
-            Hobby expectedHobby = Hobby.builder()
-                    .name("Test Hobby")
-                    .wikiLink("www.testhobby.com")
-                    .category("Indendørs")
-                    .type("Test")
-                    .build();
+        Hobby expectedHobby = Hobby.builder()
+                .name("Test Hobby")
+                .wikiLink("www.testhobby.com")
+                .category("Indendørs")
+                .type("Test")
+                .build();
 
-            dao.createHobby(expectedHobby);
-            Hobby actualHobby = dao.findById(expectedHobby.getId());
-            assertNotNull(actualHobby, "Hobby with ID " + expectedHobby.getId() + " should not be null.");
+        dao.createHobby(expectedHobby);
+        Hobby actualHobby = dao.findById(expectedHobby.getId());
+        assertNotNull(actualHobby, "Hobby with ID " + expectedHobby.getId() + " should not be null.");
 
 
-            assertEquals(expectedHobby.getId(), actualHobby.getId());
-            assertEquals(expectedHobby.getName(), actualHobby.getName());
-            assertEquals(expectedHobby.getWikiLink(), actualHobby.getWikiLink());
-            assertEquals(expectedHobby.getCategory(), actualHobby.getCategory());
-            assertEquals(expectedHobby.getType(), actualHobby.getType());
-            assertEquals(expectedHobby, actualHobby);
+        assertEquals(expectedHobby.getId(), actualHobby.getId());
+        assertEquals(expectedHobby.getName(), actualHobby.getName());
+        assertEquals(expectedHobby.getWikiLink(), actualHobby.getWikiLink());
+        assertEquals(expectedHobby.getCategory(), actualHobby.getCategory());
+        assertEquals(expectedHobby.getType(), actualHobby.getType());
+        assertEquals(expectedHobby, actualHobby);
 
     }
 
@@ -81,33 +81,49 @@ class HobbyDAOImplTest {
 
     @Test
     void deleteHobby() {
-        Hobby testHobby = Hobby.builder()
-                .name("Hotdog-spisning")
-                .wikiLink("www.wikipedia.dk/hotdogspisning")
+        Hobby expectedHobby = Hobby.builder()
+                .name("Test Hobby")
+                .wikiLink("www.testhobby.com")
                 .category("Indendørs")
-                .type("Pas..")
+                .type("Test")
                 .build();
 
-        dao.createHobby(testHobby);
+        dao.createHobby(expectedHobby);
+        dao.deleteHobby(expectedHobby);
 
-        int id = testHobby.getId();
+        Hobby deletedHobby = dao.findById(expectedHobby.getId());
 
-        dao.deleteHobby(testHobby);
-
-        assertThrows(Exception.class, () -> dao.findById(id));
+        assertNull(deletedHobby, "Deleted hobby should be null.");
     }
 
     @Test
-    void findById() {
-    }
 
-    @Test
     void findHobby() {
+
+        Hobby hobby1 = Hobby.builder()
+                .name("Hobby1")
+                .wikiLink("www.hobby1.com")
+                .category("Indendørs")
+                .type("Type1")
+                .build();
+
+        Hobby hobby2 = Hobby.builder()
+                .name("Hobby2")
+                .wikiLink("www.hobby2.com")
+                .category("Udendørs")
+                .type("Type2")
+                .build();
+
+        dao.createHobby(hobby1);
+        dao.createHobby(hobby2);
+
+
+        List<Hobby> allHobbies = dao.findHobby();
+
+        assertNotNull(allHobbies, "List of hobbies should not be null.");
+        assertFalse(allHobbies.isEmpty(), "List of hobbies should not be empty.");
+        assertTrue(allHobbies.contains(hobby1), "List should contain hobby1.");
+        assertTrue(allHobbies.contains(hobby2), "List should contain hobby2.");
     }
 
-    @Test
-    void testDeleteHobby() {
-    }
-
-
-}
+        }
