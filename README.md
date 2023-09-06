@@ -1,6 +1,6 @@
--- HobbySammen --
+![](C:\Users\rasmu\Downloads\HobbyLogo.drawio.png)
 
-Indhold:
+Content:
 
 [1] Business Model
 
@@ -16,11 +16,12 @@ Indhold:
 
 [1] Business Model
 
-This project is made for Ældresagen, who wants a program for older people, where they can find people with similar interests and link up.
+This project, HobbySammen, is made for Ældresagen, who wants an app/a program for older people, where they can find people with similar interests and link up.
 The app is made to prevent loneliness, which is one of the biggest health risks for older people, and the idea is that the app 
 will make it easier for people to meet people with similar interests. 
+
 The program is thought to be made for mobilephones, to remove the requirement of an ethernet connection,
-a computer, writing down the name of a webpage and so on. Things that most people have more at hand on a mobilephone, especially in regards to their age.
+a computer, writing down the name of a webpage and so on. Things that most people have more at hand on a mobilephone, especially in regards to their age and how they live.
 
 
 ***********************
