@@ -20,7 +20,9 @@ import java.util.Set;
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
                 //US 5, mangler count
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
-                // @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"), Change to something
+
+                @NamedQuery(name = "Hobby.findById", query = "select h from Hobby h where h.id = :id"),
+                @NamedQuery(name = "Hobby.findCountForAllHobbies", query = "SELECT h.name, COUNT(p) FROM Hobby h JOIN h.persons p GROUP BY h.name"),
                 @NamedQuery(name = "Hobby.deleteFromId", query = "delete from Hobby h where h.id = :id")
         }
 )
@@ -52,9 +54,16 @@ public class Hobby {
     @Column(name = "modification_date")
     private LocalDate modificationDate;
 
-
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private Set<Person> persons = new HashSet<>();
+    private Set<Person> person = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    @Column(name ="hobby_type", nullable = false)
+    private HobbyType hobbyType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hobby_category", nullable = false)
+    private HobbyCategory hobbyCategory;
 
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
@@ -69,8 +78,21 @@ public class Hobby {
         this.category = category;
     }
 
-    public void addPerson(Person person) {
-        if (person != null) {
+
+    public enum HobbyType {
+
+        INDENDØRS,
+        UDENDØRS,
+        OBSERVATION
+    }
+
+    public enum HobbyCategory {
+
+        GENEREL
+    }
+
+    public void addPerson(Person person){
+        if(person != null) {
             persons.add(person);
         }
     }
