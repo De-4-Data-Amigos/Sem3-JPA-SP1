@@ -11,10 +11,16 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "person_details")
 
-//@NamedQueries({
-//        @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id")
+@NamedQueries({
+        // ?
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+        // US 6
+        @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName"),
+        // US 7
+        @NamedQuery(name = "Person.findAllZipAndCityNames", query = "SELECT p.cityName, p.zipcode FROM PersonDetails p")
+})
+
 //
-//})
 public class PersonDetails {
 
     @Id
@@ -24,6 +30,9 @@ public class PersonDetails {
 
     @Column(name = "zip",nullable = false)
     private int zipcode;
+
+    @Column(name = "address", nullable = false)
+    private String address;
 
     @Column(name = "city_name",nullable = false)
     private String cityName;
@@ -47,8 +56,11 @@ public class PersonDetails {
     private Person person;
 
 
+
     public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
+
         this.zipcode = zipcode;
+        this.address = address;
         this.cityName = cityName;
         this.regionName = regionName;
         this.municipalityName = municipalityName;

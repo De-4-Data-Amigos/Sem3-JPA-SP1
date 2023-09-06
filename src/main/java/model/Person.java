@@ -18,10 +18,25 @@ import java.util.Set;
 @Entity
 
 @NamedQueries({
+        // US som vi selv har lavet
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+
         @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
-        @NamedQuery(name = "Person.findPerson", query = "SELECT p FROM Person p")
+     
         //@NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobbies = :id")
+
+       // us 1,
+        @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),
+        //
+        @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
+        // US 3+4
+        @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobby  = :id"),
+
+       // US 8
+        @NamedQuery(name = "Person.getPersonInfoByPhoneNumber", query = "SELECT p FROM Person p LEFT JOIN FETCH p.personDetails.address LEFT JOIN FETCH p.hobby WHERE p.phoneNumber = :phoneNumber")
+  
+
+
 })
 public class Person {
 
@@ -39,11 +54,16 @@ public class Person {
     @Column(name = "age", nullable = false)
     private int age;
 
+
     @Column(name = "email", nullable = false,unique = true)
+
+   
+
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", unique = true, nullable = false)
     private int phoneNumber;
+
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "creation_date")
@@ -68,6 +88,7 @@ public class Person {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
 
     @PrePersist
     private void onPrePersist(){
@@ -95,4 +116,5 @@ public class Person {
             hobby.getPersons().add(this);
         }
     }
+
 }

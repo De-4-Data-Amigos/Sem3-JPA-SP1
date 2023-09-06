@@ -18,6 +18,7 @@ import java.util.Set;
 @NamedQueries(
         {
                 @NamedQuery(name = "Hobby.findAllHobbies", query = "select h from Hobby h"),
+                //US 5, mangler count
                 @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"),
                 // @NamedQuery(name = "Hobby.deleteAllHobbies", query = "delete from Hobby h"), Change to something
                 @NamedQuery(name = "Hobby.deleteFromId", query = "delete from Hobby h where h.id = :id")
@@ -61,6 +62,11 @@ public class Hobby {
         this.wikiLink = wikiLink;
         this.category = category;
         this.type = type;
+
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void addPerson(Person person){
