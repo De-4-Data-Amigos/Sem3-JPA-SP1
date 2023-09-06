@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -51,7 +53,6 @@ class PersonDetailsDAOImplTest {
 
         assertEquals(expectedPersonDetails, actualPerson);
     }
-
 
 
     @Test
@@ -103,13 +104,71 @@ class PersonDetailsDAOImplTest {
 
     @Test
     void findCityPersonById() {
+        PersonDetails testPersonDetails = PersonDetails.builder()
+                .zipcode(3000)
+                .address("Langevej 48")
+                .cityName("Helsingør")
+                .regionName("Region Hovedstaden")
+                .municipalityName("Helsingør Komunne")
+                .build();
+
+        dao.createPersonDetails(testPersonDetails);
+
+        int id = testPersonDetails.getId();
+
+        String actual = dao.findCityPersonById(id);
+
+        assertEquals("Helsingør", actual);
+
     }
 
     @Test
     void findAllUsersInACity() {
+        PersonDetails testPersonDetails = PersonDetails.builder()
+                .zipcode(3000)
+                .address("Langevej 48")
+                .cityName("Helsingør")
+                .regionName("Region Hovedstaden")
+                .municipalityName("Helsingør Komunne")
+                .build();
+
+        dao.createPersonDetails(testPersonDetails);
+
+
+        PersonDetails testPersonDetails2 = PersonDetails.builder()
+                .zipcode(3000)
+                .address("Bobslædevej 62")
+                .cityName("Helsingør")
+                .regionName("Region Hovedstaden")
+                .municipalityName("Helsingør Komunne")
+                .build();
+
+        dao.createPersonDetails(testPersonDetails2);
+
+        List<PersonDetails> actual = dao.findAllUsersInACity("Helsingør");
+
+        assertEquals(2, actual.size());
+
     }
 
     @Test
     void findAllZipAndCityNames() {
+        PersonDetails testPersonDetails1 = PersonDetails.builder()
+                .zipcode(3000)
+                .address("Langevej 48")
+                .cityName("Helsingør")
+                .regionName("Region Hovedstaden")
+                .municipalityName("Helsingør Komunne")
+                .build();
+
+        dao.createPersonDetails(testPersonDetails1);
+
+        List<Object[]> actual = dao.findAllZipAndCityNames(testPersonDetails1);
+
+        assertEquals(3000,actual.get(0)[0]);
+        assertEquals("Helsingør",actual.get(0)[1]);
+
+
+
     }
 }
