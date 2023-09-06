@@ -29,7 +29,7 @@ class PersonDetailsDAOImplTest {
     @BeforeEach
     void setUp() {
         HibernateConfig.addAnnotatedClasses(Hobby.class, Person.class, PersonDetails.class);
-        emf = HibernateConfig.getEntityManagerFactoryConfig("-insert-db-name-");
+        emf = HibernateConfig.getEntityManagerFactoryConfig("hobbydb");
         dao = PersonDetailsDAOImpl.getInstance(emf); //Cast expression fikser, men..?
     }
 
@@ -74,7 +74,8 @@ class PersonDetailsDAOImplTest {
 
         PersonDetails actualPerson = dao.updatePersonDetails(expectedPerson);
 
-        assertEquals(expectedPerson, actualPerson);
+        assertEquals(3070, actualPerson.getZipcode());
+        assertEquals("Snekkersten", actualPerson.getCityName());
 
     }
 
@@ -94,7 +95,8 @@ class PersonDetailsDAOImplTest {
 
         dao.deletePersonDetails(testPersonDetails);
 
-        assertThrows(Exception.class, () -> dao.findById(id));
+        PersonDetails deletedPersonDetails = dao.findById(id);
+        assertNull(deletedPersonDetails);
 
     }
 

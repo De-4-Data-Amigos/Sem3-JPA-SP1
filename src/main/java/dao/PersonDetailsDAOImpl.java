@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import model.Person;
 import model.PersonDetails;
 
 import java.util.List;
@@ -34,7 +35,9 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
 
     @Override
     public PersonDetails findById(Integer personDetailsId) {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            return  em.find(PersonDetails.class, personDetailsId);
+        }
     }
 
     @Override
