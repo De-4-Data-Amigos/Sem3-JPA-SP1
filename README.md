@@ -58,6 +58,7 @@ where we heavily used Githubs own project-board.
 
 
 We did however use our Discord chat group for this, usually creating a to-do for the day and one for the next day (see picture below):
+
 ![](C:\Users\rasmu\Downloads\DiscordStyring.png)
 
 We used Github for our coding-work, different branches to ensure control of what gets pushed to Main, and only pushed stuff into Main once it was tested and finished.
@@ -67,7 +68,7 @@ Victor was our lead in regards to ensuring this, as branches and such can be a b
 
 ***********************
 
-[5] Technical requirements 
+[5] Technical requirements
 
     JPA
     JPQL
@@ -78,6 +79,8 @@ Victor was our lead in regards to ensuring this, as branches and such can be a b
     PostgresSQL
     pgAdmin
     Lombok
+
+Everything above has been covered in our project.
 
 ***********************
 
