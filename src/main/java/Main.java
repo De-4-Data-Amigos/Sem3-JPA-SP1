@@ -46,7 +46,7 @@ public class Main {
 
         PersonDetails pd3 = new PersonDetails(125,"Din addresse", "cityname2", "hovedstaden", "Kommune");
         p3.setPersonDetails(pd3);
-
+        
         Hobby h1 = new Hobby("HobbyName1", "wikilink", "cat1", "type1");
         Hobby h2 = new Hobby("HobbyName2", "wikilink", "cat2", "type2");
 

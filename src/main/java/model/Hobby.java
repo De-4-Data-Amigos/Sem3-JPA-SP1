@@ -59,13 +59,13 @@ public class Hobby {
     @ToString.Exclude
     private Set<Person> persons = new HashSet<>();
 
-/*    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "hobby_type", nullable = false)
-    private HobbyType hobbyType;*/
+    private HobbyType hobbyType;
 
-   /* @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "hobby_category", nullable = false)
-    private HobbyCategory hobbyCategory;*/
+    private HobbyCategory hobbyCategory;
 
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
@@ -81,17 +81,17 @@ public class Hobby {
     }
 
 
-/*    public enum HobbyType {
+    public enum HobbyType {
 
         INDENDØRS,
         UDENDØRS,
         OBSERVATION
-    }*/
+    }
 
-    /*public enum HobbyCategory {
+    public enum HobbyCategory {
 
         GENEREL
-    }*/
+    }
 
     public void addPerson(Person person) {
         if (person != null) {
