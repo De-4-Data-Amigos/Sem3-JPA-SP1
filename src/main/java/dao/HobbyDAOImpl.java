@@ -6,8 +6,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
 import model.Hobby;
 import model.Person;
+import org.w3c.dom.html.HTMLMetaElement;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HobbyDAOImpl implements IHobbyDAO {
 
@@ -52,7 +55,10 @@ public class HobbyDAOImpl implements IHobbyDAO {
 
     @Override
     public Hobby findById(Integer hobbyId) {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Hobby> typedQuery = em.createNamedQuery("Hobby.findById", Hobby.class);
+            return typedQuery.getSingleResult();
+        }
     }
 
     @Override
@@ -75,9 +81,17 @@ public class HobbyDAOImpl implements IHobbyDAO {
     @Override
     public List<Person> findPersonByHobby(Hobby hobby) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<Person> typedQuery = em.createQuery("select p from Person p where p.hobby = :hobby_id", Person.class);
+            TypedQuery<Person> typedQuery = em.createQuery("SELECT p FROM Person p JOIN p.hobbies h WHERE h.id = :id", Person.class);
             typedQuery.setParameter("hobby_id", hobby.getId());
             return typedQuery.getResultList();
+        }
+    }
+
+    @Override
+    public Map<String, Integer> findAmountOfUsersForeachHobby() {
+        Map<String, Integer> hobbiesAndAmount = new HashMap<>();
+        try (EntityManager em = emf.createEntityManager()) {
+
         }
     }
 }
