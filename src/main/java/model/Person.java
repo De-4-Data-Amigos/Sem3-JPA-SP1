@@ -23,16 +23,15 @@ import java.util.Set;
 
         @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
 
-       // us 1,
+        // us 1,
         @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),
         //
         @NamedQuery(name = "Person.findAllPersons", query = "SELECT p FROM Person p"),
         // US 3+4
         @NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p JOIN p.hobbies h WHERE h.id = :id"),
 
-       // US 8
+        // US 8
         @NamedQuery(name = "Person.getPersonInfoByPhoneNumber", query = "SELECT p FROM Person p LEFT JOIN FETCH p.personDetails pd LEFT JOIN FETCH pd.address a LEFT JOIN FETCH p.hobbies WHERE p.phoneNumber = :phoneNumber")
-  
 
 
 })
@@ -53,9 +52,7 @@ public class Person {
     private int age;
 
 
-    @Column(name = "email", nullable = false,unique = true)
-
-   
+    @Column(name = "email", nullable = false, unique = true)
 
     private String email;
 
@@ -89,14 +86,14 @@ public class Person {
 
 
     @PrePersist
-    private void onPrePersist(){
+    private void onPrePersist() {
         LocalDate ld = LocalDate.now();
         creationDate = ld;
         modificationDate = ld;
     }
 
     @PreUpdate
-    private void onPreUpdate(){
+    private void onPreUpdate() {
         modificationDate = LocalDate.now();
     }
 

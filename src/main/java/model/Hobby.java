@@ -53,7 +53,7 @@ public class Hobby {
     private LocalDate modificationDate;
 
 
-    @ManyToMany(cascade = CascadeType.PERSIST )
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Person> persons = new HashSet<>();
 
     @Builder
@@ -69,21 +69,21 @@ public class Hobby {
         this.category = category;
     }
 
-    public void addPerson(Person person){
-        if(person != null) {
+    public void addPerson(Person person) {
+        if (person != null) {
             persons.add(person);
         }
     }
 
     @PrePersist
-    private void onPrePersist(){
+    private void onPrePersist() {
         LocalDate ld = LocalDate.now();
         creationDate = ld;
         modificationDate = ld;
     }
 
     @PreUpdate
-    private void onPreUpdate(){
+    private void onPreUpdate() {
         modificationDate = LocalDate.now();
     }
 }

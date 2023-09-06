@@ -1,4 +1,5 @@
 package model;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,19 +27,19 @@ public class PersonDetails {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "zip",nullable = false)
+    @Column(name = "zip", nullable = false)
     private int zipcode;
 
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "city_name",nullable = false)
+    @Column(name = "city_name", nullable = false)
     private String cityName;
 
-    @Column(name = "region_name",nullable = false)
+    @Column(name = "region_name", nullable = false)
     private String regionName;
 
-    @Column(name = "municipality_name",nullable = false)
+    @Column(name = "municipality_name", nullable = false)
     private String municipalityName;
 
     @Temporal(value = TemporalType.DATE)
@@ -50,9 +51,8 @@ public class PersonDetails {
     private LocalDate modificationDate;
 
 
-    @OneToOne( cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Person person;
-
 
 
     public PersonDetails(int zipcode, String address, String cityName, String regionName, String municipalityName) {
@@ -66,14 +66,14 @@ public class PersonDetails {
 
 
     @PrePersist
-    private void onPrePersist(){
+    private void onPrePersist() {
         LocalDate ld = LocalDate.now();
         creationDate = ld;
         modificationDate = ld;
     }
 
     @PreUpdate
-    private void onPreUpdate(){
+    private void onPreUpdate() {
         modificationDate = LocalDate.now();
     }
 
