@@ -47,13 +47,14 @@ Person to PersonDetails is a 1 - 1 (OnetoOne) relation
 
 [4] Collaboration & Project Control
 
-We spent the first day mapping out the project, creating first a businesscase, then the domain model and lastly the EER-diagram was made.
+We spent the first day mapping out the project: first creating the business case, then the domain model and lastly the EER-diagram.
 
-We set up the project together, ensuring we all were in on creating entity-classes, dao-classes, testing of these and the database itself.
+We set up the project together, ensuring that all members were in on creating entity-classes, dao-classes, testing of these and the database itself.
+This ensured we all knew what was going on and that we got some important practice in on what we've learned over the past few weeks of our new semester.
 
-Most of our time spent on the project were at CPH Business in Lyngby, usually 9.30-14'ish, and then communicated from home over Discord in our usual group.
-In regards to control, we did not setup a Kanban board for this project and that was mostly due to it's shorter size, in comparison to our 2 semester exam project spanning over a month, 
-where we heavily used Githubs own project-board.
+Most of our time spent on the project was physically at CPH Business in Lyngby, usually 9.30-14'ish, and then some lesser communication from hom in our usual Discord group.
+In regards to project control, we did not setup a Kanban board for this project and that was mostly due to it's shorter size, in comparison to our 2 semester exam project spanning over a month, 
+where we heavily used Githubs own project-board. 
 
 
 We did however use our Discord chat group for this, usually creating a to-do for the day and one for the next day (see picture below):
@@ -78,4 +79,8 @@ Victor was our lead in regards to ensuring this, as branches and such can be a b
     pgAdmin
     Lombok
 
+***********************
 
+// 3 Semester, Datamatiker, Team B, Group 8 (Amigos):
+
+// Rasmus Tornby Arendt - Victor Christensen - Deniz Sonmez - Marcus Løbel
