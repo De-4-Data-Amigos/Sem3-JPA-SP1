@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +20,11 @@ import java.util.Set;
 @NamedQueries({
         // US som vi selv har lavet
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+     
+        //@NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobbies = :id")
+
        // us 1,
         @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),
         //
@@ -27,10 +34,7 @@ import java.util.Set;
 
        // US 8
         @NamedQuery(name = "Person.getPersonInfoByPhoneNumber", query = "SELECT p FROM Person p LEFT JOIN FETCH p.personDetails.address LEFT JOIN FETCH p.hobby WHERE p.phoneNumber = :phoneNumber")
-
-
-
-
+  
 
 
 })
@@ -38,7 +42,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "first_name", nullable = false)
@@ -50,17 +54,31 @@ public class Person {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(name = "email", nullable = false)
+
+    @Column(name = "email", nullable = false,unique = true)
+
+   
+
     private String email;
 
     @Column(name = "phone_number", unique = true, nullable = false)
     private int phoneNumber;
 
-    @OneToMany(mappedBy = "person")
-    private Set<Hobby> hobby;
 
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "creation_date")
+    private LocalDate creationDate;
+
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "modification_date")
+    private LocalDate modificationDate;
+
+    @ManyToMany
+    private Set<Hobby> hobbies = new HashSet<>();
+
+    @OneToOne(mappedBy = "person", cascade = CascadeType.PERSIST)
     private PersonDetails personDetails;
+
 
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {
@@ -71,12 +89,32 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    @PrePersist
+    private void onPrePersist(){
+        LocalDate ld = LocalDate.now();
+        creationDate = ld;
+        modificationDate = ld;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @PreUpdate
+    private void onPreUpdate(){
+        modificationDate = LocalDate.now();
+    }
+
+
+    public void setPersonDetails(PersonDetails personDetails) {
+        if (personDetails != null) {
+            this.personDetails = personDetails;
+            personDetails.setPerson(this);
+        }
+    }
+
+    public void addHobby(Hobby hobby) {
+        if (hobby != null) {
+            hobbies.add(hobby);
+            hobby.getPersons().add(this);
+        }
     }
 
 }
