@@ -1,19 +1,77 @@
 -- HobbySammen --
 
-[R-3] A description of your business idea
-Business model
+Indhold:
 
-Dette projekt er lavet for Ældresagen, som ønsker at lave en simpel portal hvor folk kan finde andre med samme interesser.
-App’en laves som forebyggende mod ensomhed, hvor ideen er at folk skal kunne finde nye venner, før det bliver for svært.
+[1] Business Model
 
-[R-3] An Domain Model of your business idea
+[2] Domain model
 
-README.md
+[3] EER-diagram of the database
 
-The Readme.md file must contain the following:
+[4] Collaboration & Project control
 
-    [R-3] A description of your business idea
-    [R-3] An Domain Model of your business idea
-    [R-3] An EE-diagram of your database
-    [R-3] A group description of your group work and how you have collaborated (GIT, Trello, Discord, who did what, etc.)
-    [R-3] All technical requirements listed above under Project Requirements
+[5] Project Requirements
+
+***********************
+
+[1] Business Model
+
+This project is made for Ældresagen, who wants a program for older people, where they can find people with similar interests and link up.
+The app is made to prevent loneliness, which is one of the biggest health risks for older people, and the idea is that the app 
+will make it easier for people to meet people with similar interests. 
+The program is thought to be made for mobilephones, to remove the requirement of an ethernet connection,
+a computer, writing down the name of a webpage and so on. Things that most people have more at hand on a mobilephone, especially in regards to their age.
+
+
+***********************
+
+[2] Domain model
+
+![](C:\Users\rasmu\Downloads\HobbySammen.png)
+
+Explanation:
+
+Person to hobby is a 1 - 1 (OnetoOne) relation
+
+Person to PersonDetails is a * - * (BiDirectional) relation
+
+
+
+***********************
+[3] EER-diagram
+
+![](C:\Users\rasmu\Downloads\HobbySammenEERdiagram.png)
+
+***********************
+
+[4] Collaboration & Project control
+
+We spent the first day mapping out the project, creating first a businesscase, then the domain model and lastly the EER-diagram was made.
+
+We set up the project together, ensuring we all were in on creating entity-classes, dao-classes, testing of these and the database itself.
+
+Most of our time spent on the project were at CPH Business in Lyngby, usually 9.30-14'ish, and the communicated from home over Discord in our usual group.
+In regards to control, we did not setup a Kanban board (we usually use the one on Github) for this project and mostly due to it's shorter size. 
+We did however use our Discord chat group for this, usually creating a to-do for the day and one for the next day (see picture below):
+![](C:\Users\rasmu\Downloads\DiscordStyring.png)
+
+We used Github for our coding-work, different branches to ensure control of what gets pushed to Main, and only pushed stuff into Main once it was tested and finished.
+
+Victor was our lead in regards to ensuring this, as branches and such can be a bit confusing at times, even though we've used it before.
+
+
+***********************
+
+[5] Technical requirements 
+
+    JPA
+    JPQL
+    Maven
+    JDK 17^
+    JUnit 5
+    Docker
+    PostgresSQL
+    pgAdmin
+    Lombok
+
+
