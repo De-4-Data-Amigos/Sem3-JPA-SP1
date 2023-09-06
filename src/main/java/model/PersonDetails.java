@@ -55,7 +55,7 @@ public class PersonDetails {
 
 
 
-    public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
+    public PersonDetails(int zipcode, String address, String cityName, String regionName, String municipalityName) {
 
         this.zipcode = zipcode;
         this.address = address;

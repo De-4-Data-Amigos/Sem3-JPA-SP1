@@ -21,7 +21,7 @@ public class Main {
                 .phoneNumber(12345678)
                 .build();
 
-        PersonDetails pd1 = new PersonDetails(123, "cityname", "hovedstaden", "Kommune");
+        PersonDetails pd1 = new PersonDetails(123,"Min addresse", "cityname", "hovedstaden", "Kommune");
         p1.setPersonDetails(pd1);
 
         Person p2 = Person.builder()
@@ -32,7 +32,7 @@ public class Main {
                 .phoneNumber(22345678)
                 .build();
 
-        PersonDetails pd2 = new PersonDetails(124, "cityname1", "hovedstaden", "Kommune");
+        PersonDetails pd2 = new PersonDetails(124,"Jeres addresse", "cityname1", "hovedstaden", "Kommune");
         p2.setPersonDetails(pd2);
 
         Person p3 = Person.builder()
@@ -43,7 +43,7 @@ public class Main {
                 .phoneNumber(32345678)
                 .build();
 
-        PersonDetails pd3 = new PersonDetails(125, "cityname2", "hovedstaden", "Kommune");
+        PersonDetails pd3 = new PersonDetails(125,"Din addresse", "cityname2", "hovedstaden", "Kommune");
         p3.setPersonDetails(pd3);
 
         Hobby h1 = new Hobby("HobbyName1", "wikilink", "cat1", "type1");
@@ -70,6 +70,7 @@ public class Main {
 
             em.persist(h1);
             em.persist(h2);
+
 
             em.persist(p1);
             em.persist(p2);
