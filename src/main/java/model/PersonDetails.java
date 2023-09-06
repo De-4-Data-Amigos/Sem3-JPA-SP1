@@ -50,6 +50,7 @@ public class PersonDetails {
     private LocalDate modificationDate;
 
 
+
     @OneToOne( cascade = CascadeType.PERSIST)
     private Person person;
 
@@ -63,8 +64,6 @@ public class PersonDetails {
         this.regionName = regionName;
         this.municipalityName = municipalityName;
     }
-
-
     @PrePersist
     private void onPrePersist(){
         LocalDate ld = LocalDate.now();
@@ -80,6 +79,7 @@ public class PersonDetails {
     public void setPerson(Person person) {
         this.person = person;
     }
+
 }
 
 
