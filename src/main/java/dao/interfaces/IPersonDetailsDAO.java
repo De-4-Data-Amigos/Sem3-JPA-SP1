@@ -17,10 +17,10 @@ public interface IPersonDetailsDAO {
 
     void deletePersonDetails(PersonDetails personDetails);
 
-    List<PersonDetails> findCityPersonById(Integer personId);
+    String findCityPersonById(Integer personId);
 
-    List<PersonDetails> findAllUsersInACity(PersonDetails cityName);
+    List<PersonDetails> findAllUsersInACity(String cityName);
 
-    List<PersonDetails> findAllZipAndCityNames(PersonDetails personDetails);
+    List<Object[]> findAllZipAndCityNames(PersonDetails personDetails);
 
 }

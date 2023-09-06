@@ -117,5 +117,13 @@ public class Person {
             hobby.getPersons().add(this);
         }
     }
-  
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
