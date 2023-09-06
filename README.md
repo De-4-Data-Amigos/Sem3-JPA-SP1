@@ -32,9 +32,9 @@ a computer, writing down the name of a webpage and so on. Things that most peopl
 
 Explanation:
 
-Person to hobby is a 1 - 1 (OnetoOne) relation
+Person to hobby is a * - * (BiDirectional, ManyToMany) relation
 
-Person to PersonDetails is a * - * (BiDirectional) relation
+Person to PersonDetails is a 1 - 1 (OnetoOne) relation
 
 
 
