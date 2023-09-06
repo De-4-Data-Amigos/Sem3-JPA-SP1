@@ -22,8 +22,6 @@ import java.util.Set;
         @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
 
         @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
-     
-        //@NamedQuery(name = "Person.findPersonByHobby", query = "SELECT p FROM Person p WHERE p.hobbies = :id")
 
        // us 1,
         @NamedQuery(name = "Person.findPersonByPhoneNumber", query = "SELECT p FROM Person p WHERE p.phoneNumber = :phoneNumber"),

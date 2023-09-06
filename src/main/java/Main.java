@@ -63,12 +63,6 @@ public class Main {
 
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(pd1);
-            em.persist(pd2);
-            em.persist(pd3);
-
-            em.persist(h1);
-            em.persist(h2);
 
             em.persist(pd1);
             em.persist(pd2);
@@ -80,6 +74,7 @@ public class Main {
             em.persist(p1);
             em.persist(p2);
             em.persist(p3);
+
             em.getTransaction().commit();
         }
     }

@@ -112,8 +112,7 @@ public class PersonDAOImpl implements IPersonDAO {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Person> typedQuery = em.createNamedQuery("Person.getPersonInfoByPhoneNumber", Person.class );
             typedQuery.setParameter("phoneNumber", phoneNumber);
-            List<Person> resultList = typedQuery.getResultList();
-            return resultList;
+            return typedQuery.getResultList();
         }
     }
 

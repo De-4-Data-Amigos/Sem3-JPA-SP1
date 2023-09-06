@@ -12,8 +12,6 @@ import java.time.LocalDate;
 @Table(name = "person_details")
 
 @NamedQueries({
-        // ?
-        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
         // US 6
         @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName"),
         // US 7
