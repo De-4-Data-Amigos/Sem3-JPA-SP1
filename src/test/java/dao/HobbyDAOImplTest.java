@@ -11,6 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HobbyDAOImplTest {
@@ -24,7 +26,7 @@ class HobbyDAOImplTest {
     @BeforeAll
     static void setUpAll() {
         HibernateConfig.addAnnotatedClasses(Hobby.class, Person.class, PersonDetails.class);
-        emf = HibernateConfig.getEntityManagerFactoryConfig("-insert-db-name-");
+        emf = HibernateConfig.getEntityManagerFactoryConfig("hobbydb");
         dao = HobbyDAOImpl.getInstance(emf);
     }
 
@@ -33,19 +35,27 @@ class HobbyDAOImplTest {
     }
 
     @Test
-    void createHobby() {
-        Hobby expectedHobby = Hobby.builder()
-                .name("Hotdog-spisning")
-                .wikiLink("www.wikipedia.dk/hotdogspisning")
-                .category("Indendørs")
-                .type("Pas..")
-                .build();
+    void createHobby(){
 
-        dao.createHobby(expectedHobby);
+            Hobby expectedHobby = Hobby.builder()
+                    .name("Test Hobby")
+                    .wikiLink("www.testhobby.com")
+                    .category("Indendørs")
+                    .type("Test")
+                    .build();
 
-        Hobby actualHobby = dao.findById(expectedHobby.getId());
+            dao.createHobby(expectedHobby);
+            Hobby actualHobby = dao.findById(expectedHobby.getId());
+            assertNotNull(actualHobby, "Hobby with ID " + expectedHobby.getId() + " should not be null.");
 
-        assertEquals(expectedHobby, actualHobby);
+
+            assertEquals(expectedHobby.getId(), actualHobby.getId());
+            assertEquals(expectedHobby.getName(), actualHobby.getName());
+            assertEquals(expectedHobby.getWikiLink(), actualHobby.getWikiLink());
+            assertEquals(expectedHobby.getCategory(), actualHobby.getCategory());
+            assertEquals(expectedHobby.getType(), actualHobby.getType());
+            assertEquals(expectedHobby, actualHobby);
+
     }
 
     @Test
@@ -99,7 +109,5 @@ class HobbyDAOImplTest {
     void testDeleteHobby() {
     }
 
-    @Test
-    void findPersonByHobby() {
-    }
+
 }

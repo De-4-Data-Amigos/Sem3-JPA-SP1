@@ -72,7 +72,6 @@ public class Main {
             em.persist(h1);
             em.persist(h2);
 
-
             em.persist(p1);
             em.persist(p2);
             em.persist(p3);

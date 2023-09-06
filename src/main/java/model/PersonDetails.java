@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -13,6 +14,8 @@ import java.time.LocalDate;
 @Table(name = "person_details")
 
 @NamedQueries({
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+
         // US 6
         @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName"),
         // US 7
@@ -66,13 +69,6 @@ public class PersonDetails {
     }
 
 
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
 
     @PrePersist
     private void onPrePersist() {

@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -55,15 +56,16 @@ public class Hobby {
     private LocalDate modificationDate;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private Set<Person> person = new HashSet<>();
+    @ToString.Exclude
+    private Set<Person> persons = new HashSet<>();
 
-    @Enumerated(EnumType.STRING)
-    @Column(name ="hobby_type", nullable = false)
-    private HobbyType hobbyType;
+/*    @Enumerated(EnumType.STRING)
+    @Column(name = "hobby_type", nullable = false)
+    private HobbyType hobbyType;*/
 
-    @Enumerated(EnumType.STRING)
+   /* @Enumerated(EnumType.STRING)
     @Column(name = "hobby_category", nullable = false)
-    private HobbyCategory hobbyCategory;
+    private HobbyCategory hobbyCategory;*/
 
     @Builder
     public Hobby(String name, String wikiLink, String category, String type) {
@@ -79,20 +81,20 @@ public class Hobby {
     }
 
 
-    public enum HobbyType {
+/*    public enum HobbyType {
 
         INDENDØRS,
         UDENDØRS,
         OBSERVATION
-    }
+    }*/
 
-    public enum HobbyCategory {
+    /*public enum HobbyCategory {
 
         GENEREL
-    }
+    }*/
 
-    public void addPerson(Person person){
-        if(person != null) {
+    public void addPerson(Person person) {
+        if (person != null) {
             persons.add(person);
         }
     }
@@ -108,4 +110,25 @@ public class Hobby {
     private void onPreUpdate() {
         modificationDate = LocalDate.now();
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hobby hobby = (Hobby) o;
+        return id == hobby.id &&
+                Objects.equals(name, hobby.name) &&
+                Objects.equals(wikiLink, hobby.wikiLink) &&
+                Objects.equals(category, hobby.category) &&
+                Objects.equals(type, hobby.type) &&
+                Objects.equals(creationDate, hobby.creationDate) &&
+                Objects.equals(modificationDate, hobby.modificationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, wikiLink, category, type, creationDate, modificationDate);
+    }
+
 }
