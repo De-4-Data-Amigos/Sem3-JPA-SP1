@@ -27,7 +27,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "first_name", nullable = false)
@@ -39,6 +39,7 @@ public class Person {
     @Column(name = "age", nullable = false)
     private int age;
 
+    @Column(name = "email", nullable = false,unique = true)
     private String email;
 
     @Column(name = "phone_number", nullable = false)
@@ -54,9 +55,10 @@ public class Person {
 
     @ManyToMany
     private Set<Hobby> hobbies = new HashSet<>();
-    @OneToOne(mappedBy = "person")//, cascade = CascadeType.ALL)
-    @MapsId
+
+    @OneToOne(mappedBy = "person", cascade = CascadeType.PERSIST)
     private PersonDetails personDetails;
+
 
     @Builder
     public Person(String firstName, String surname, int age, String email, int phoneNumber) {
@@ -79,14 +81,18 @@ public class Person {
         modificationDate = LocalDate.now();
     }
 
-    public void addPersonDetails(PersonDetails personDetails){
+
+    public void setPersonDetails(PersonDetails personDetails) {
         if (personDetails != null) {
             this.personDetails = personDetails;
+            personDetails.setPerson(this);
         }
     }
+
     public void addHobby(Hobby hobby) {
-        if(hobby != null) {
+        if (hobby != null) {
             hobbies.add(hobby);
+            hobby.getPersons().add(this);
         }
     }
 }

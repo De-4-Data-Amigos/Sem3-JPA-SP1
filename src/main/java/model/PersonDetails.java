@@ -18,8 +18,9 @@ import java.time.LocalDate;
 public class PersonDetails {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    private int Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
     @Column(name = "zip",nullable = false)
     private int zipcode;
@@ -42,8 +43,9 @@ public class PersonDetails {
     private LocalDate modificationDate;
 
 
-    @OneToOne//, cascade = CascadeType.ALL)
+    @OneToOne( cascade = CascadeType.PERSIST)
     private Person person;
+
 
     public PersonDetails(int zipcode, String cityName, String regionName, String municipalityName) {
         this.zipcode = zipcode;
@@ -52,11 +54,6 @@ public class PersonDetails {
         this.municipalityName = municipalityName;
     }
 
-    private void addPerson(Person person){
-        if (person != null) {
-            this.person = person;
-        }
-    }
 
     @PrePersist
     private void onPrePersist(){
@@ -69,4 +66,11 @@ public class PersonDetails {
     private void onPreUpdate(){
         modificationDate = LocalDate.now();
     }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }
+
+
+

@@ -52,7 +52,7 @@ public class Hobby {
     private LocalDate modificationDate;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST )
     private Set<Person> persons = new HashSet<>();
 
     @Builder
