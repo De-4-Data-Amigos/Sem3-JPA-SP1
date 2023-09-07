@@ -41,11 +41,11 @@ public class Hobby {
     @Column(name = "wikiLink", nullable = false)
     private String wikiLink;
 
-    @Column(name = "category", nullable = false)
-    private String category;
+    //@Column(name = "category", nullable = false)
+    //private String category;
 
-    @Column(name = "type", nullable = false)
-    private String type;
+    //@Column(name = "type", nullable = false)
+    //private String type;
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "creation_date")
@@ -60,19 +60,19 @@ public class Hobby {
     private Set<Person> persons = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "hobby_type", nullable = false)
+    @Column(name = "type", nullable = false)
     private HobbyType hobbyType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "hobby_category", nullable = false)
+    @Column(name = "category", nullable = false)
     private HobbyCategory hobbyCategory;
 
     @Builder
-    public Hobby(String name, String wikiLink, String category, String type) {
+    public Hobby(String name, String wikiLink, HobbyCategory hobbyCategory, HobbyType hobbyType) {
         this.name = name;
         this.wikiLink = wikiLink;
-        this.category = category;
-        this.type = type;
+        this.hobbyCategory = hobbyCategory;
+        this.hobbyType = hobbyType;
 
     }
 
