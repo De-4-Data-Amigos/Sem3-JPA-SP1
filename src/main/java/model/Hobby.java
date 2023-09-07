@@ -76,7 +76,7 @@ public class Hobby {
 
     }
 
-    public void setCategory(String category) {
+    public void setCategory(HobbyCategory category) {
         this.category = category;
     }
 
