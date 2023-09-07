@@ -38,12 +38,12 @@ class HobbyDAOImplTest {
 
     @Test
     void createHobby() {
-        
+
         Hobby expectedHobby = Hobby.builder()
                 .name("Test Hobby")
                 .wikiLink("www.testhobby.com")
-                .category(Hobby.HobbyCategory.GENEREL)
-                .type(Hobby.HobbyType.INDENDØRS)
+                .hobbyCategory(Hobby.HobbyCategory.GENEREL)
+                .hobbyType(Hobby.HobbyType.INDENDØRS)
                 .build();
 
         dao.createHobby(expectedHobby);
@@ -54,8 +54,8 @@ class HobbyDAOImplTest {
         assertEquals(expectedHobby.getId(), actualHobby.getId());
         assertEquals(expectedHobby.getName(), actualHobby.getName());
         assertEquals(expectedHobby.getWikiLink(), actualHobby.getWikiLink());
-        assertEquals(expectedHobby.getCategory(), actualHobby.getCategory());
-        assertEquals(expectedHobby.getType(), actualHobby.getType());
+        assertEquals(expectedHobby.getHobbyCategory(), actualHobby.getHobbyCategory());
+        assertEquals(expectedHobby.getHobbyType(), actualHobby.getHobbyType());
         assertEquals(expectedHobby, actualHobby);
 
     }
@@ -65,8 +65,8 @@ class HobbyDAOImplTest {
         Hobby testHobby = Hobby.builder()
                 .name("Hotdog-spisning")
                 .wikiLink("www.wikipedia.dk/hotdogspisning")
-                .category(Hobby.HobbyCategory.GENEREL)
-                .type(Hobby.HobbyType.KONKURRENCE)
+                .hobbyCategory(Hobby.HobbyCategory.GENEREL)
+                .hobbyType(Hobby.HobbyType.KONKURRENCE)
                 .build();
 
         dao.createHobby(testHobby);
@@ -86,8 +86,8 @@ class HobbyDAOImplTest {
         Hobby expectedHobby = Hobby.builder()
                 .name("Test Hobby")
                 .wikiLink("www.testhobby.com")
-                .category(Hobby.HobbyCategory.GENEREL)
-                .type(Hobby.HobbyType.INDENDØRS)
+                .hobbyCategory(Hobby.HobbyCategory.GENEREL)
+                .hobbyType(Hobby.HobbyType.INDENDØRS)
                 .build();
 
         dao.createHobby(expectedHobby);
@@ -105,15 +105,15 @@ class HobbyDAOImplTest {
         Hobby hobby1 = Hobby.builder()
                 .name("Hobby1")
                 .wikiLink("www.hobby1.com")
-                .category(Hobby.HobbyCategory.GENEREL)
-                .type(Hobby.HobbyType.INDENDØRS)
+                .hobbyCategory(Hobby.HobbyCategory.GENEREL)
+                .hobbyType(Hobby.HobbyType.INDENDØRS)
                 .build();
 
         Hobby hobby2 = Hobby.builder()
                 .name("Hobby2")
                 .wikiLink("www.hobby2.com")
-                .category(Hobby.HobbyCategory.GENEREL)
-                .type(Hobby.HobbyType.UDENDØRS)
+                .hobbyCategory(Hobby.HobbyCategory.GENEREL)
+                .hobbyType(Hobby.HobbyType.UDENDØRS)
                 .build();
 
         dao.createHobby(hobby1);
