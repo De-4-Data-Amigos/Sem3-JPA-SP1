@@ -1,8 +1,6 @@
 package dao.interfaces;
 
-import model.Hobby;
 import model.Person;
-import org.hibernate.dialect.lock.PessimisticEntityLockException;
 
 import java.util.List;
 
@@ -21,11 +19,13 @@ public interface IPersonDAO {
 
     List<Person> findAllPersons();
 
-    List<Person> findPersonByHobby(Hobby hobby);
+    List<Person> findPersonByHobby(Integer hobby);
 
-    Person findPersonByPhoneNumber(String phoneNumber);
+
 
     int findAllPersonsSize();
+
+    Person findPersonByPhoneNumber(Integer phoneNumber);
 
     List<Person> getPersonInfoByPhoneNumber(String phoneNumber);
 

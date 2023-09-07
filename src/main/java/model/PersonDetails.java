@@ -1,24 +1,27 @@
 package model;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
-
+@EqualsAndHashCode
 @Entity
 @Table(name = "person_details")
 
 @NamedQueries({
+        @NamedQuery(name = "Person.findCityPersonById", query = "SELECT p.cityName FROM PersonDetails p WHERE p.id = :id"),
+
         // US 6
         @NamedQuery(name = "Person.findAllUsersInACity", query = "SELECT p FROM PersonDetails p WHERE p.cityName = :cityName"),
         // US 7
-        @NamedQuery(name = "Person.findAllZipAndCityNames", query = "SELECT p.cityName, p.zipcode FROM PersonDetails p")
+        @NamedQuery(name = "Person.findAllZipAndCityNames", query = "SELECT p.zipcode, p.cityName FROM PersonDetails p")
 })
 
-//
 public class PersonDetails {
 
     @Id
@@ -26,19 +29,19 @@ public class PersonDetails {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "zip",nullable = false)
+    @Column(name = "zip", nullable = false)
     private int zipcode;
 
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "city_name",nullable = false)
+    @Column(name = "city_name", nullable = false)
     private String cityName;
 
-    @Column(name = "region_name",nullable = false)
+    @Column(name = "region_name", nullable = false)
     private String regionName;
 
-    @Column(name = "municipality_name",nullable = false)
+    @Column(name = "municipality_name", nullable = false)
     private String municipalityName;
 
     @Temporal(value = TemporalType.DATE)
@@ -55,7 +58,7 @@ public class PersonDetails {
     private Person person;
 
 
-
+    @Builder
     public PersonDetails(int zipcode, String address, String cityName, String regionName, String municipalityName) {
 
         this.zipcode = zipcode;
@@ -64,15 +67,18 @@ public class PersonDetails {
         this.regionName = regionName;
         this.municipalityName = municipalityName;
     }
+
+
+
     @PrePersist
-    private void onPrePersist(){
+    private void onPrePersist() {
         LocalDate ld = LocalDate.now();
         creationDate = ld;
         modificationDate = ld;
     }
 
     @PreUpdate
-    private void onPreUpdate(){
+    private void onPreUpdate() {
         modificationDate = LocalDate.now();
     }
 

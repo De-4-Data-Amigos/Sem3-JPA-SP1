@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -40,11 +41,11 @@ public class Hobby {
     @Column(name = "wikiLink", nullable = false)
     private String wikiLink;
 
-    @Column(name = "category", nullable = false)
-    private String category;
+    //@Column(name = "category", nullable = false)
+    //private String category;
 
-    @Column(name = "type", nullable = false)
-    private String type;
+    //@Column(name = "type", nullable = false)
+    //private String type;
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "creation_date")
@@ -55,57 +56,83 @@ public class Hobby {
     private LocalDate modificationDate;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private Set<Person> person = new HashSet<>();
+    @ToString.Exclude
+    private Set<Person> persons = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
-    @Column(name ="hobby_type", nullable = false)
+    @Column(name = "type", nullable = false)
     private HobbyType hobbyType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "hobby_category", nullable = false)
+    @Column(name = "category", nullable = false)
     private HobbyCategory hobbyCategory;
 
     @Builder
-    public Hobby(String name, String wikiLink, String category, String type) {
+    public Hobby(String name, String wikiLink, HobbyCategory hobbyCategory, HobbyType hobbyType) {
         this.name = name;
         this.wikiLink = wikiLink;
-        this.category = category;
-        this.type = type;
+        this.hobbyCategory = hobbyCategory;
+        this.hobbyType = hobbyType;
 
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(HobbyCategory category) {
+        this.hobbyCategory = category;
     }
 
-<<<<<<< entities
+
     public enum HobbyType {
 
         INDENDØRS,
         UDENDØRS,
-        OBSERVATION
+        KONKURRENCE,
+        INDENDØRS_UDENDØRS
     }
 
     public enum HobbyCategory {
 
-        GENEREL
+        GENEREL,
+        KONKURRENCE,
+        OBSERVATION,
+        EDUCATIONAL_HOBBIES
     }
 
-    public void addPerson(Person person){
-        if(person != null) {
+    public void addPerson(Person person) {
+        if (person != null) {
             persons.add(person);
         }
     }
 
     @PrePersist
-    private void onPrePersist(){
+    private void onPrePersist() {
         LocalDate ld = LocalDate.now();
         creationDate = ld;
         modificationDate = ld;
     }
 
     @PreUpdate
-    private void onPreUpdate(){
+    private void onPreUpdate() {
         modificationDate = LocalDate.now();
     }
+
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Hobby hobby = (Hobby) o;
+//        return id == hobby.id &&
+//                Objects.equals(name, hobby.name) &&
+//                Objects.equals(wikiLink, hobby.wikiLink) &&
+//                Objects.equals(hobbyCategory, hobby.hobbyCategory) &&
+//                Objects.equals(hobbyType, hobby.hobbyType) &&
+//                Objects.equals(creationDate, hobby.creationDate) &&
+//                Objects.equals(modificationDate, hobby.modificationDate);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, wikiLink, hobbyCategory, hobbyType, creationDate, modificationDate);
+//    }
+
 }

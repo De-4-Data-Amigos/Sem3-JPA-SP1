@@ -4,7 +4,6 @@ import dao.interfaces.IPersonDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-import model.Hobby;
 import model.Person;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class PersonDAOImpl implements IPersonDAO {
     @Override
     public Person findById(Integer personId) {
         try (EntityManager em = emf.createEntityManager()) {
-            return  em.find(Person.class, personId);
+            return em.find(Person.class, personId);
         }
 
     }
@@ -88,7 +87,7 @@ public class PersonDAOImpl implements IPersonDAO {
     }
 
     @Override
-    public List<Person> findPersonByHobby(Hobby hobby) {
+    public List<Person> findPersonByHobby(Integer hobby) {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findPersonByHobby", Person.class);
             typedQuery.setParameter("id", hobby);
@@ -98,8 +97,9 @@ public class PersonDAOImpl implements IPersonDAO {
 
     }
 
+
     @Override
-    public Person findPersonByPhoneNumber(String phoneNumber) {
+    public Person findPersonByPhoneNumber(Integer phoneNumber) {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Person> typedQuery = em.createNamedQuery("Person.findPersonByPhoneNumber", Person.class);
             typedQuery.setParameter("phoneNumber", phoneNumber);
@@ -110,12 +110,11 @@ public class PersonDAOImpl implements IPersonDAO {
     @Override
     public List<Person> getPersonInfoByPhoneNumber(String phoneNumber) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.getPersonInfoByPhoneNumber", Person.class );
+            TypedQuery<Person> typedQuery = em.createNamedQuery("Person.getPersonInfoByPhoneNumber", Person.class);
             typedQuery.setParameter("phoneNumber", phoneNumber);
             return typedQuery.getResultList();
         }
     }
-
 
 
 }

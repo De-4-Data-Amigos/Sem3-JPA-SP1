@@ -27,7 +27,7 @@ public class HobbyDAOImpl implements IHobbyDAO {
     }
 
     @Override
-    public void createHobby(Hobby hobby) {
+    public  void createHobby(Hobby hobby) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(hobby);
@@ -54,11 +54,10 @@ public class HobbyDAOImpl implements IHobbyDAO {
         }
     }
 
-    @Override
+   @Override
     public Hobby findById(Integer hobbyId) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<Hobby> typedQuery = em.createNamedQuery("Hobby.findById", Hobby.class);
-            return typedQuery.getSingleResult();
+            return em.find(Hobby.class, hobbyId);
         }
     }
 
@@ -83,7 +82,7 @@ public class HobbyDAOImpl implements IHobbyDAO {
     public List<Person> findPersonByHobby(Hobby hobby) {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Person> typedQuery = em.createQuery("SELECT p FROM Person p JOIN p.hobbies h WHERE h.id = :id", Person.class);
-            typedQuery.setParameter("hobby_id", hobby.getId());
+            typedQuery.setParameter("id" + "id", hobby.getId());
             return typedQuery.getResultList();
         }
     }

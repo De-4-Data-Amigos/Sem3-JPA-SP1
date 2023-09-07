@@ -3,7 +3,9 @@ package dao;
 import dao.interfaces.IPersonDetailsDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import model.Person;
 import model.PersonDetails;
 
 import java.util.List;
@@ -33,7 +35,9 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
 
     @Override
     public PersonDetails findById(Integer personDetailsId) {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            return  em.find(PersonDetails.class, personDetailsId);
+        }
     }
 
     @Override
@@ -57,16 +61,16 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
 
 
     @Override
-    public List<PersonDetails> findCityPersonById(Integer personId) {
+    public String findCityPersonById(Integer personId) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<PersonDetails> typedQuery = em.createNamedQuery("Person.findCityPersonById", PersonDetails.class);
+            TypedQuery<String> typedQuery = em.createNamedQuery("Person.findCityPersonById", String.class);
             typedQuery.setParameter("id", personId);
-            return typedQuery.getResultList();
+            return typedQuery.getSingleResult();
         }
     }
 
     @Override
-    public List<PersonDetails> findAllUsersInACity(PersonDetails cityName) {
+    public List<PersonDetails> findAllUsersInACity(String cityName) {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<PersonDetails> typedQuery = em.createNamedQuery("Person.findAllUsersInACity", PersonDetails.class);
             typedQuery.setParameter("cityName", cityName);
@@ -76,13 +80,11 @@ public class PersonDetailsDAOImpl implements IPersonDetailsDAO {
     }
 
     @Override
-    public List<PersonDetails> findAllZipAndCityNames(PersonDetails personDetails) {
+    public List<Object[]> findAllZipAndCityNames(PersonDetails personDetails) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<PersonDetails> typedQuery = em.createNamedQuery("Person.findAllUsersInACity", PersonDetails.class);
-            return typedQuery.getResultList();
+            TypedQuery<Object[]> query = em.createNamedQuery("Person.findAllZipAndCityNames", Object[].class);
+           // query.setParameter("cityName", personDetails.getCityName());
+            return query.getResultList();
         }
-
     }
-
-
 }
