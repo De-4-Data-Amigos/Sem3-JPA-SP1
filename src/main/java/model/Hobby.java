@@ -77,7 +77,7 @@ public class Hobby {
     }
 
     public void setCategory(HobbyCategory category) {
-        this.category = category;
+        this.hobbyCategory = category;
     }
 
 
@@ -120,15 +120,15 @@ public class Hobby {
         return id == hobby.id &&
                 Objects.equals(name, hobby.name) &&
                 Objects.equals(wikiLink, hobby.wikiLink) &&
-                Objects.equals(category, hobby.category) &&
-                Objects.equals(type, hobby.type) &&
+                Objects.equals(hobbyCategory, hobby.hobbyCategory) &&
+                Objects.equals(hobbyType, hobby.hobbyType) &&
                 Objects.equals(creationDate, hobby.creationDate) &&
                 Objects.equals(modificationDate, hobby.modificationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, wikiLink, category, type, creationDate, modificationDate);
+        return Objects.hash(id, name, wikiLink, hobbyCategory, hobbyType, creationDate, modificationDate);
     }
 
 }
