@@ -21,8 +21,6 @@ class HobbyDAOImplTest {
 
     private static EntityManagerFactory emf;
 
-    private static EntityManager em;
-
     private static IHobbyDAO dao;
 
     @BeforeAll
@@ -128,4 +126,4 @@ class HobbyDAOImplTest {
         assertTrue(allHobbies.contains(hobby2), "List should contain hobby2.");
     }
 
-        }
+}
