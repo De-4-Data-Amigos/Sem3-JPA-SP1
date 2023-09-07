@@ -85,9 +85,8 @@ public class Hobby {
 
         INDENDØRS,
         UDENDØRS,
-        ---,
         KONKURRENCE,
-        INDENDØRS-UDENDØRS
+        INDENDØRS_UDENDØRS
     }
 
     public enum HobbyCategory {
