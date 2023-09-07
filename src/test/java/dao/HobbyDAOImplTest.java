@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManagerFactory;
 import model.Hobby;
 import model.Person;
 import model.PersonDetails;
+import model.Hobby.HobbyCategory;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -40,8 +42,8 @@ class HobbyDAOImplTest {
         Hobby expectedHobby = Hobby.builder()
                 .name("Test Hobby")
                 .wikiLink("www.testhobby.com")
-                .category("Indendørs")
-                .type("Test")
+                .category(Hobby.HobbyCategory.GENEREL)
+                .type(Hobby.HobbyType.INDENDØRS)
                 .build();
 
         dao.createHobby(expectedHobby);
@@ -63,15 +65,15 @@ class HobbyDAOImplTest {
         Hobby testHobby = Hobby.builder()
                 .name("Hotdog-spisning")
                 .wikiLink("www.wikipedia.dk/hotdogspisning")
-                .category("Indendørs")
-                .type("Pas..")
+                .category(Hobby.HobbyCategory.GENEREL)
+                .type(Hobby.HobbyType.KONKURRENCE)
                 .build();
 
         dao.createHobby(testHobby);
 
         Hobby expectedHobby = dao.findById(testHobby.getId());
 
-        expectedHobby.setCategory("Udendørs");
+        expectedHobby.setCategory(HobbyCategory.KONKURRENCE);
 
         Hobby actualHobby = dao.updateHobby(expectedHobby);
 
@@ -84,8 +86,8 @@ class HobbyDAOImplTest {
         Hobby expectedHobby = Hobby.builder()
                 .name("Test Hobby")
                 .wikiLink("www.testhobby.com")
-                .category("Indendørs")
-                .type("Test")
+                .category(Hobby.HobbyCategory.GENEREL)
+                .type(Hobby.HobbyType.INDENDØRS)
                 .build();
 
         dao.createHobby(expectedHobby);
@@ -103,15 +105,15 @@ class HobbyDAOImplTest {
         Hobby hobby1 = Hobby.builder()
                 .name("Hobby1")
                 .wikiLink("www.hobby1.com")
-                .category("Indendørs")
-                .type("Type1")
+                .category(Hobby.HobbyCategory.GENEREL)
+                .type(Hobby.HobbyType.INDENDØRS)
                 .build();
 
         Hobby hobby2 = Hobby.builder()
                 .name("Hobby2")
                 .wikiLink("www.hobby2.com")
-                .category("Udendørs")
-                .type("Type2")
+                .category(Hobby.HobbyCategory.GENEREL)
+                .type(Hobby.HobbyType.UDENDØRS)
                 .build();
 
         dao.createHobby(hobby1);

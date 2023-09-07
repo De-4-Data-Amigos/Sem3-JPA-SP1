@@ -85,12 +85,17 @@ public class Hobby {
 
         INDENDØRS,
         UDENDØRS,
-        OBSERVATION
+        ---,
+        KONKURRENCE,
+        INDENDØRS-UDENDØRS
     }
 
     public enum HobbyCategory {
 
-        GENEREL
+        GENEREL,
+        KONKURRENCE,
+        OBSERVATION,
+        EDUCATIONAL_HOBBIES
     }
 
     public void addPerson(Person person) {
