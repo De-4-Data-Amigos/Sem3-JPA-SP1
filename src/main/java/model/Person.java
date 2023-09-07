@@ -105,27 +105,27 @@ public class Person {
             hobby.getPersons().add(this);
         }
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id &&
-                age == person.age &&
-                phoneNumber == person.phoneNumber &&
-                Objects.equals(firstName, person.firstName) &&
-                Objects.equals(surname, person.surname) &&
-                Objects.equals(email, person.email) &&
-                Objects.equals(creationDate, person.creationDate) &&
-                Objects.equals(modificationDate, person.modificationDate) &&
-                Objects.equals(hobbies, person.hobbies) &&
-                Objects.equals(personDetails, person.personDetails);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, surname, age, email, phoneNumber, creationDate, modificationDate, hobbies, personDetails);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Person person = (Person) o;
+//        return id == person.id &&
+//                age == person.age &&
+//                phoneNumber == person.phoneNumber &&
+//                Objects.equals(firstName, person.firstName) &&
+//                Objects.equals(surname, person.surname) &&
+//                Objects.equals(email, person.email) &&
+//                Objects.equals(creationDate, person.creationDate) &&
+//                Objects.equals(modificationDate, person.modificationDate) &&
+//                Objects.equals(hobbies, person.hobbies) &&
+//                Objects.equals(personDetails, person.personDetails);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, firstName, surname, age, email, phoneNumber, creationDate, modificationDate, hobbies, personDetails);
+//    }
 
 
 

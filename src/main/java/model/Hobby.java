@@ -116,23 +116,23 @@ public class Hobby {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Hobby hobby = (Hobby) o;
-        return id == hobby.id &&
-                Objects.equals(name, hobby.name) &&
-                Objects.equals(wikiLink, hobby.wikiLink) &&
-                Objects.equals(hobbyCategory, hobby.hobbyCategory) &&
-                Objects.equals(hobbyType, hobby.hobbyType) &&
-                Objects.equals(creationDate, hobby.creationDate) &&
-                Objects.equals(modificationDate, hobby.modificationDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, wikiLink, hobbyCategory, hobbyType, creationDate, modificationDate);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Hobby hobby = (Hobby) o;
+//        return id == hobby.id &&
+//                Objects.equals(name, hobby.name) &&
+//                Objects.equals(wikiLink, hobby.wikiLink) &&
+//                Objects.equals(hobbyCategory, hobby.hobbyCategory) &&
+//                Objects.equals(hobbyType, hobby.hobbyType) &&
+//                Objects.equals(creationDate, hobby.creationDate) &&
+//                Objects.equals(modificationDate, hobby.modificationDate);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, wikiLink, hobbyCategory, hobbyType, creationDate, modificationDate);
+//    }
 
 }
