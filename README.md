@@ -1,4 +1,4 @@
-![](C:\Users\rasmu\Downloads\HobbyLogo.drawio.png)
+![HobbyLogo.drawio.png](Documentation%2FHobbyLogo.drawio.png)
 
 Content:
 
@@ -28,7 +28,7 @@ a computer, writing down the name of a webpage and so on. Things that most peopl
 
 [2] Domain model
 
-![](C:\Users\rasmu\Downloads\HobbySammen.png)
+![HobbySammenDomainModel.png](Documentation%2FHobbySammenDomainModel.png)
 
 Explanation:
 
@@ -41,7 +41,7 @@ Person to PersonDetails is a 1 - 1 (OnetoOne) relation
 ***********************
 [3] EER-diagram
 
-![](C:\Users\rasmu\Downloads\HobbySammenEERdiagram.png)
+![HobbySammenEERdiagram.png](Documentation%2FHobbySammenEERdiagram.png)
 
 ***********************
 
@@ -59,7 +59,7 @@ where we heavily used Githubs own project-board.
 
 We did however use our Discord chat group for this, usually creating a to-do for the day and one for the next day (see picture below):
 
-![](C:\Users\rasmu\Downloads\DiscordStyring.png)
+![DiscordStyring.png](Documentation%2FDiscordStyring.png)
 
 We used Github for our coding-work, different branches to ensure control of what gets pushed to Main, and only pushed stuff into Main once it was tested and finished.
 
